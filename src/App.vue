@@ -4,7 +4,8 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link to="/users/new">Create Account</router-link> |
-      <router-link to="/dreams">Dreams Index</router-link>
+      <router-link to="/dreams">Dreams Index</router-link> |
+      <router-link to="/tags">Tags Index</router-link>
     </div>
     <router-view/>
   </div>

@@ -7,6 +7,7 @@ import DreamsIndex from './views/Dreams/Index.vue';
 import DreamsNew from './views/Dreams/New.vue';
 import DreamsShow from './views/Dreams/Show.vue';
 import DreamsEdit from './views/Dreams/Edit.vue';
+import TagsIndex from './views/Tags/Index.vue';
 
 Vue.use(Router);
 
@@ -48,6 +49,11 @@ export default new Router({
       path: '/dreams/:id/edit',
       name: 'dreams-edit',
       component: DreamsEdit
+    },
+    {
+      path: '/tags',
+      name: 'tags-index',
+      component: TagsIndex
     }
     // {
     //   path: '/about',
