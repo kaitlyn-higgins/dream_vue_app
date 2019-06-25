@@ -5,7 +5,7 @@
       <li v-for="error in errors">{{ error }}</li>
     </ul>
 
-    <h2>{{ tag.name }}</h2>
+    <h1>Dreams with {{ tag.name }} tags</h1>
 <!--     <h5>{{ tag.associated_dreams }}</h5>
  --><!--     <div><img v-bind:src="tag.image_url" alt=""></div>
     <p>{{ tag.content }}</p> -->

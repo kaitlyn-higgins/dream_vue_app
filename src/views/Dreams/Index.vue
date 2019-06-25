@@ -5,7 +5,7 @@
     <h1>Dreams Index</h1>
 
     <div v-for="dream in dreams">
-      <h2 class="title">{{ dream.title }}</h2>
+      <h2 class="title"><router-link v-bind:to="'/dreams/' + dream.id">{{ dream.title }}</router-link></h2>
       <h5 class="username">{{ dream.user.username }}</h5>
       <div class="image_url"><img v-bind:src="dream.image_url" alt=""></div>
       <p class="content">{{ dream.content }}</p>
@@ -13,7 +13,7 @@
       <div v-for="tag in dream.tags">
         <h4 class="tag_name">
         <ul>
-          <li>{{ tag.name }}</li>
+          <li><router-link v-bind:to="'/tags/' + tag.id">{{ tag.name }}</router-link></li>
         </ul>
         </h4>
       </div> 

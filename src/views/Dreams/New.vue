@@ -6,14 +6,21 @@
     </ul>
 
     <h1>Enter a new dream</h1>
+    
+    {{tagNames}}
+
 
     <form v-on:submit.prevent="submit()">
 <!--       make 3 tags  -->
-      <div>
+      <div id="tag-names">
         <label for="dreamTags">Tags</label>
-        <input type="text" id="tag1" v-model="newDreamTag1">
-        <input type="text" id="tag2" v-model="newDreamTag2">
-        <input type="text" id="tag3" v-model="newDreamTag3">
+        <input type="text" id="tag0" v-model="tagNames[0]">
+        <input v-if="shownInputs > 0" type="text" id="tag1" v-model="tagNames[1]">
+        <input v-if="shownInputs > 1" type="text" id="tag2" v-model="tagNames[2]">
+        <input v-if="shownInputs > 2" type="text" id="tag3" v-model="tagNames[3]">
+        <input v-if="shownInputs > 3" type="text" id="tag4" v-model="tagNames[4]">
+        <input v-if="shownInputs > 4" type="text" id="tag5" v-model="tagNames[5]">
+        <a v-on:click="shownInputs++">+</a>
 
       </div>
       <div>
@@ -46,13 +53,12 @@ import axios from "axios";
 export default {
   data: function() {
     return {
-      newDreamTag1: "",
-      newDreamTag2: "",
-      newDreamTag3: "",
+      tagNames: [],
       newDreamTitle: "",
       newDreamContent: "",
       newDreamImageUrl: "",
       newDreamIsPublic: "",
+      shownInputs: 0,
       errors: []
     };
   },
@@ -61,9 +67,7 @@ export default {
   methods: {
     submit: function() {
       var params = {
-        tag1: this.newDreamTag1,
-        tag2: this.newDreamTag2,
-        tag3: this.newDreamTag3,
+        tag_names: this.tagNames,
         title: this.newDreamTitle,
         content: this.newDreamContent,
         image_url: this.newDreamImageUrl,
@@ -75,7 +79,18 @@ export default {
       }).catch(error => {
         this.errors = error.response.data.errors;
       });
-    }
+    },
+    // addInput: function() {
+    //   var tagsDiv = document.getElementById("tag-names"); // finds element by id and 
+    //   var newInput = document.createElement("input");
+    //   newInput.setAttribute("type", "text");
+    //   // typeAttr.value = "text";
+    //   var vModelAttr = document.createAttribute("v-model");
+    //   vModelAttr.value = this.tagNames[this.tagNames.length];
+    //   newInput.setAttributeNode(vModelAttr); // targeting div create input element, create type attr = , attaching
+    //   tagsDiv.appendChild(newInput);
+    //   //creating a new input element, create attribute on input. 1. text type 2. v-model of a thing
+    // }
   }
 };
 </script>

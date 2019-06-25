@@ -2,7 +2,12 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
 import About from './views/About.vue';
-import UsersNew from './views/UsersNew.vue';
+import Signup from "./views/Users/Signup.vue";
+import Login from "./views/Users/Login.vue";
+import Logout from "./views/Users/Logout.vue";
+import UsersShow from "./views/Users/Show.vue";
+import UsersEdit from "./views/Users/Edit.vue";
+// import UsersNew from './views/UsersNew.vue';
 import DreamsIndex from './views/Dreams/Index.vue';
 import DreamsNew from './views/Dreams/New.vue';
 import DreamsShow from './views/Dreams/Show.vue';
@@ -22,6 +27,21 @@ export default new Router({
       component: Home
     },
     {
+      path: '/signup',
+      name: 'signup',
+      component: Signup // this is users create
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/logout',
+      name: 'logout',
+      component: Logout
+    },
+    {
       path: '/about',
       name: 'about',
       component: About
@@ -31,6 +51,16 @@ export default new Router({
     //   name: 'users-new',
     //   component: UsersNew
     // },
+    {
+      path: '/users/:id',
+      name: 'users-show',
+      component: UsersShow
+    },
+    {
+      path: '/users/:id/edit',
+      name: 'users-edit',
+      component: UsersEdit
+    },
     {
       path: '/dreams',
       name: 'dreams-index',

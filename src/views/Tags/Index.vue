@@ -5,7 +5,7 @@
     <h1>Tags Index</h1>
 
     <div v-for="tag in tags">
-      <h2 class="name">{{ tag.name }}</h2>
+      <h2 class="name"><router-link v-bind:to="'/tags/' + tag.id">{{ tag.name }}</router-link></h2>
 
        
     </div>
