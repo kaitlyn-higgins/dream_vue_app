@@ -5,6 +5,7 @@ import About from './views/About.vue';
 import UsersNew from './views/UsersNew.vue';
 import DreamsIndex from './views/Dreams/Index.vue';
 import DreamsNew from './views/Dreams/New.vue';
+import DreamsShow from './views/Dreams/Show.vue';
 
 Vue.use(Router);
 
@@ -22,13 +23,13 @@ export default new Router({
       name: 'about',
       component: About
     },
+    // {
+    //   path: '/users/new',
+    //   name: 'users-new',
+    //   component: UsersNew
+    // },
     {
-      path: '/users/new',
-      name: 'users-new',
-      component: UsersNew
-    },
-    {
-      path: '/dreams/index',
+      path: '/dreams',
       name: 'dreams-index',
       component: DreamsIndex
     },
@@ -36,6 +37,11 @@ export default new Router({
       path: '/dreams/new',
       name: 'dreams-new',
       component: DreamsNew
+    },
+    {
+      path: '/dreams/:id',
+      name: 'dreams-show',
+      component: DreamsShow
     }
     // {
     //   path: '/about',

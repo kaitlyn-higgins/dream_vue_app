@@ -16,7 +16,8 @@
           <li>{{ tag.name }}</li>
         </ul>
         </h4>
-      </div>  
+      </div> 
+       
     </div>
   </div>
 </template>

@@ -36,8 +36,6 @@
       <button type="submit">Save Dream</button>
       
     </form>
-
-
     
   </div>
 </template>
@@ -73,7 +71,7 @@ export default {
       };
       axios.post("/api/dreams", params).then(response => {
         console.log("success", response.data);
-        this.$router.push("/"); //change this to dreams show page once made
+        this.$router.push("/dreams/" + response.data.id ); //change this to dreams show page once made
       }).catch(error => {
         this.errors = error.response.data.errors;
       });
