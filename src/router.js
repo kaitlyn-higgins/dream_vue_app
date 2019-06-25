@@ -6,6 +6,7 @@ import UsersNew from './views/UsersNew.vue';
 import DreamsIndex from './views/Dreams/Index.vue';
 import DreamsNew from './views/Dreams/New.vue';
 import DreamsShow from './views/Dreams/Show.vue';
+import DreamsEdit from './views/Dreams/Edit.vue';
 
 Vue.use(Router);
 
@@ -42,6 +43,11 @@ export default new Router({
       path: '/dreams/:id',
       name: 'dreams-show',
       component: DreamsShow
+    },
+    {
+      path: '/dreams/:id/edit',
+      name: 'dreams-edit',
+      component: DreamsEdit
     }
     // {
     //   path: '/about',

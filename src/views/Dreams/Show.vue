@@ -18,14 +18,16 @@
       </h4>
     </div> 
     
-<!--     <div>
-      <button v-on:click="updateProduct(product)">Update Item</button>
+    <div>
+      <button>
+       <router-link v-bind:to="'/dreams/' + dream.id + '/edit'">Update Dream</router-link>
+     </button>
     </div>
 
-    <div>
+<!--     <div>
       <button v-on:click="destroyProduct()">Destroy Product</button>
-    </div> -->
-
+    </div>
+ -->
 
   </div>
 </template>
