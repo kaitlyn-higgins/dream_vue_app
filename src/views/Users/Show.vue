@@ -20,10 +20,19 @@
       <input type="text" placeholder="Enter search term" v-model="dreamFilter">
     </div>
 
+
+    <!-- sorting buttons -->
+    <div>
+      <button v-on:click="setSortAttribute('updated_at')">Sort by Date</button>
+        <i v-if="sortAttribute === 'updated_at' && sortAscending === 1">^</i>
+        <i v-if="sortAttribute === 'updated_at' && sortAscending === -1"></i>
+    </div>
     <!-- main content w/ filter enabled -->
-    <div v-for="dream in filterBy(user.dreams, dreamFilter, 'title', 'content', 'tags')">
+
+    <!-- <div v-for="dream in filterBy(user.dreams, dreamFilter, 'title', 'content', 'tags')"> -->
+    <div v-for="dream in orderBy(user.dreams, sortAttribute, sortAscending)">
       <h2 class="title"><router-link v-bind:to="'/dreams/' + dream.id">{{ dream.title }}</router-link></h2>
-      <p>Posted / updated: {{dream.updated_at}}</p>
+      <p class="date">Posted / updated: {{ formattedDate(dream.updated_at) }}</p>
       <div class="image_url"><img v-bind:src="dream.image_url" alt=""></div>
 
       <div v-for="tag in dream.tags">
@@ -71,6 +80,7 @@
 <script>
 import axios from "axios";
 import Vue2Filters from "vue2-filters";
+import moment from 'moment';
 
 export default {
   mixins: [Vue2Filters.mixin],
@@ -84,6 +94,8 @@ export default {
       tags: [],
       errors: [],
       dreamFilter: "",
+      sortAttribute: "updated_at",
+      sortAscending: 1
     };
   },
   created: function() {
@@ -96,6 +108,18 @@ export default {
     });
   },
   methods: {
+    setSortAttribute: function(attribute) {
+      if (this.sortAttribute === attribute) {
+        this.sortAscending = this.sortAscending * -1;
+      } else {
+        this.sortAscending = 1;
+      }
+      this.sortAttribute = attribute;
+    },
+
+    formattedDate: function(date) {
+      return moment(date).format('LLLL');
+    }
   }
 };
 </script>
