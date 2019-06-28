@@ -7,8 +7,15 @@
     <!-- filter search bar -->
     <div>
       <label for="tag-filter">Search Tags</label>
-      <input type="text" placeholder="Enter search term" v-model="tagFilter">
+      <input type="text" placeholder="Enter search term" v-model="tagFilter" list="tags">
     </div>
+
+
+    <!-- autocompletion -->
+    <datalist id="tags">
+      <option v-for="tag in tags">{{ tag.name }}</option>
+    </datalist>
+
 
     <!-- tag list with filter enabled -->
     <div v-for="tag in filterBy(tags, tagFilter, 'name')">

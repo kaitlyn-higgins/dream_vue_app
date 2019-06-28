@@ -17,8 +17,14 @@
     <!-- filter search bar -->
     <div>
       <label for="dream-filter">Search dreams</label>
-      <input type="text" placeholder="Enter search term" v-model="dreamFilter">
+      <input type="text" placeholder="Enter search term" v-model="dreamFilter" list="titles">
     </div>
+
+
+    <!-- autocompletion -->
+    <datalist id="titles">
+      <option v-for="dream in user.dreams">{{ dream.title }}</option>
+    </datalist>
 
 
     <!-- sorting buttons -->
@@ -30,7 +36,9 @@
     <!-- main content w/ filter enabled -->
 
     <!-- <div v-for="dream in filterBy(user.dreams, dreamFilter, 'title', 'content', 'tags')"> -->
-    <div v-for="dream in orderBy(user.dreams, sortAttribute, sortAscending)">
+   
+    <div v-for="dream in orderBy(filterBy(user.dreams, dreamFilter, 'title', 'content', 'tags'), sortAttribute, sortAscending)">  
+
       <h2 class="title"><router-link v-bind:to="'/dreams/' + dream.id">{{ dream.title }}</router-link></h2>
       <p class="date">Posted / updated: {{ formattedDate(dream.updated_at) }}</p>
       <div class="image_url"><img v-bind:src="dream.image_url" alt=""></div>

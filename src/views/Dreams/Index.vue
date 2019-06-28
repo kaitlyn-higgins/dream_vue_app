@@ -4,6 +4,8 @@
 
     <h1>Dreams Index</h1>
 
+    
+    <!-- filter search bar -->
     <div>
       <label for="dream-filter">Search dreams</label>
       <input type="text" placeholder="Enter search term" v-model="dreamFilter">
