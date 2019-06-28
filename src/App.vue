@@ -10,7 +10,7 @@
       <router-link to="/logout">Logout</router-link>
 
     </div>
-    <router-view/>
+    <router-view :key="$route.path"/>
   </div>
 </template>
 
