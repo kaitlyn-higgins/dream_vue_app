@@ -11,9 +11,9 @@
     <p>{{ tag.content }}</p> -->
 
     <div v-for="dream in tag.associated_dreams">
-      <h2 class="title">{{ dream.title }}</h2>
-<!--       <h5 class="username">{{ dream.user.username }}</h5>
- -->      <div class="image_url"><img v-bind:src="dream.image_url" alt=""></div>
+      <h2 class="title"><router-link v-bind:to="'/dreams/' + dream.id">{{ dream.title }}</router-link></h2>
+      <h5 class="username"><router-link v-bind:to="'/users/' + user.id">{{ dream.user.username }}</router-link></h5>
+      <div class="image_url"><img v-bind:src="dream.image_url" alt=""></div>
       <p class="content">{{ dream.content }}</p>
 
       <p class="modified">
@@ -24,7 +24,7 @@
       <div v-for="tag in dream.tags">
         <h4 class="tag_name">
         <ul>
-          <li>{{ tag.name }}</li>
+          <li><router-link :to="'/tags/' + tag.id">{{ tag.name }}</router-link></li>
         </ul>
         </h4>
       </div> 

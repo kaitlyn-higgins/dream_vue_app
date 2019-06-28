@@ -12,12 +12,13 @@
 
     <button><router-link to="/dreams/new">Enter a new dream</router-link></button>
    
-    <button><router-link v-bind:to="'/users/' + user.id + '/edit'">Edit Account Info</router-link></button>
+    <button> <router-link v-bind:to="'/users/' + user.id + '/edit'">Edit Account Info</router-link></button>
     
 
 
     <div v-for="dream in user.dreams">
       <h2 class="title"><router-link v-bind:to="'/dreams/' + dream.id">{{ dream.title }}</router-link></h2>
+<!--       {{ dream.title }} -->
       <p>Posted / updated: {{dream.updated_at}}</p>
       <div class="image_url"><img v-bind:src="dream.image_url" alt=""></div>
 

@@ -6,14 +6,14 @@
     </ul>
 
     <h2>{{ dream.title }}</h2>
-    <h5>{{ dream.user.username }}</h5>
+    <h5><router-link v-bind:to="'/users/' + dream.user.id">{{ dream.user.username }}</router-link>{{  }}</h5>
     <div><img v-bind:src="dream.image_url" alt=""></div>
     <p>{{ dream.content }}</p>
 
     <div v-for="tag in dream.tags">
       <h4>
       <ul>
-        <li>{{ tag.name }}</li>
+        <li><router-link v-bind:to="'/tags/' + tag.id">{{ tag.name }}</router-link></li>
       </ul>
       </h4>
     </div> 

@@ -7,12 +7,19 @@
 
     <h1>Edit a dream</h1>
 
+    {{tag_names}}
+
     <form v-on:submit.prevent="submit()">
-      <div>
+      <div id="tag-names">
         <label for="dreamTags">Tags</label>
-        <input type="text" id="tag1" placeholder="dinosaur" v-model="dream.tag1">
-        <input type="text" id="tag2" placeholder="skiing" v-model="dream.tag2">
-        <input type="text" id="tag3" placeholder="volcano" v-model="dream.tag3">
+        <input type="text" id="tag0" v-model="tag_names[0]">
+        <input v-if="shownInputs > 0" type="text" id="tag1" v-model="tag_names[1]">
+        <input v-if="shownInputs > 1" type="text" id="tag2" v-model="tag_names[2]">
+        <input v-if="shownInputs > 2" type="text" id="tag3" v-model="tag_names[3]">
+        <input v-if="shownInputs > 3" type="text" id="tag4" v-model="tag_names[4]">
+        <input v-if="shownInputs > 4" type="text" id="tag5" v-model="tag_names[5]">
+        <a v-on:click="shownInputs++">+</a>
+        
 
       </div>
       <div>
@@ -45,8 +52,10 @@ import axios from "axios";
 export default {
   data: function() {
     return {
+      tag_names: [],
       dream: {},
-      errors: []
+      errors: [],
+      shownInputs: 0
     };
   },
   created: function() {
@@ -58,9 +67,8 @@ export default {
   methods: {
     submit: function() {
       var params = {
-        tag1: this.dream.tag1,
-        tag2: this.dream.tag2,
-        tag3: this.dream.tag3,
+        // tag_names: this.dream.tag_names,
+        tag_names: this.tag_names,
         title: this.dream.title,
         content: this.dream.content,
         image_url: this.dream.image_url,
