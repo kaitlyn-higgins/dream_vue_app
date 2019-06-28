@@ -4,7 +4,14 @@
 
     <h1>Dreams Index</h1>
 
-    <div v-for="dream in dreams">
+    <div>
+      <label for="dream-filter">Search dreams</label>
+      <input type="text" placeholder="Enter search term" v-model="dreamFilter">
+    </div>
+
+
+<!--     <div v-for="dream in dreams"> -->
+    <div v-for="dream in filterBy(dreams, dreamFilter, 'title', 'content', 'tags')">
       <h2 class="title"><router-link :to="'/dreams/' + dream.id">{{ dream.title }}</router-link></h2>
       <h5 class="username">{{ dream.user.username }}</h5>
       <div class="image_url"><img v-bind:src="dream.image_url" alt=""></div>
@@ -25,13 +32,16 @@
 
 <script>
 import axios from "axios";
+import Vue2Filters from "vue2-filters";
 
 export default {
+  mixins: [Vue2Filters.mixin],
   data: function() {
     return {
       dreams: [],
       tags: [],
-      user: {}
+      user: {},
+      dreamFilter: "",
     };
   },
   created: function() {

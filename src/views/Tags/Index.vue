@@ -4,7 +4,15 @@
 
     <h1>Tags Index</h1>
 
-    <div v-for="tag in tags">
+    <!-- filter search bar -->
+    <div>
+      <label for="tag-filter">Search Tags</label>
+      <input type="text" placeholder="Enter search term" v-model="tagFilter">
+    </div>
+
+    <!-- tag list with filter enabled -->
+    <div v-for="tag in filterBy(tags, tagFilter, 'name')">
+    <!-- <div v-for="tag in tags"> -->
       <h2 class="name"><router-link v-bind:to="'/tags/' + tag.id">{{ tag.name }}</router-link></h2>
 
        
@@ -14,12 +22,16 @@
 
 <script>
 import axios from "axios";
+import Vue2Filters from "vue2-filters";
+
 
 export default {
+  mixins: [Vue2Filters.mixin],
   data: function() {
     return {
       tags: [],
-      user: {}
+      user: {},
+      tagFilter: ""
     };
   },
   created: function() {

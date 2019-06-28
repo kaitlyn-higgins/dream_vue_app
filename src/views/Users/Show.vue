@@ -14,11 +14,15 @@
    
     <button> <router-link v-bind:to="'/users/' + user.id + '/edit'">Edit Account Info</router-link></button>
     
+    <!-- filter search bar -->
+    <div>
+      <label for="dream-filter">Search dreams</label>
+      <input type="text" placeholder="Enter search term" v-model="dreamFilter">
+    </div>
 
-
-    <div v-for="dream in user.dreams">
+    <!-- main content w/ filter enabled -->
+    <div v-for="dream in filterBy(user.dreams, dreamFilter, 'title', 'content', 'tags')">
       <h2 class="title"><router-link v-bind:to="'/dreams/' + dream.id">{{ dream.title }}</router-link></h2>
-<!--       {{ dream.title }} -->
       <p>Posted / updated: {{dream.updated_at}}</p>
       <div class="image_url"><img v-bind:src="dream.image_url" alt=""></div>
 
@@ -66,8 +70,10 @@
 
 <script>
 import axios from "axios";
+import Vue2Filters from "vue2-filters";
 
 export default {
+  mixins: [Vue2Filters.mixin],
   data: function() {
     return {
       // dream: {},
@@ -76,7 +82,8 @@ export default {
       current_user: [],
       dreams: [],
       tags: [],
-      errors: []
+      errors: [],
+      dreamFilter: "",
     };
   },
   created: function() {
