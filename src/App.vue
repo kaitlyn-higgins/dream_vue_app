@@ -3,11 +3,11 @@
     <div id="nav">
 <!--       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> | -->
-      <router-link to="/dreams">Dreams Index</router-link> |
-      <router-link to="/tags">Tags Index</router-link> |
-      <router-link to="/signup">Signup</router-link> |
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/logout">Logout</router-link>
+      <div><router-link to="/dreams">Dreams Index</router-link></div>
+      <div><router-link to="/tags">Tags Index</router-link></div>
+      <div v-if="!isLoggedIn()"><router-link to="/signup">Signup</router-link></div>
+      <div v-if="!isLoggedIn()"><router-link to="/login">Login</router-link></div>
+      <div v-if="isLoggedIn()"><router-link to="/logout">Logout</router-link></div>
       <!-- <router-link to="/users/:id">My Dreams</router-link> -->
 
     </div>
@@ -36,3 +36,21 @@
   color: #42b983;
 }
 </style>
+
+<script>
+  
+export default {
+  created: function() {
+  },
+  methods: {
+    isLoggedIn: function() {
+      if (localStorage.getItem("jwt")) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+};
+
+</script>
