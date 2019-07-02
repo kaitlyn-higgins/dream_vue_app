@@ -1,10 +1,6 @@
 <template>
   <div class="dreams-edit">
 
-    <ul>
-      <li v-for="error in errors">{{ error }}</li>
-    </ul>
-
     <h1>Edit a dream</h1>
 
     {{tag_names}}
@@ -39,13 +35,18 @@
       </div>
 
       <button type="submit">Save Dream</button>
-
-      <div v-if="status">
-        {{error.response.data.errors}}
-      </div>
       
     </form>
     
+<!--     <div v-if="status">
+      {{error.response.data.errors}}
+    </div> -->
+
+    <ul>
+      <li v-for="error in errors">{{ error }}</li>
+    </ul>
+
+
   </div>
 </template>
 

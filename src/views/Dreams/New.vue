@@ -1,10 +1,6 @@
 <template>
   <div class="dreams-new">
 
-    <ul>
-      <li v-for="error in errors">{{ error }}</li>
-    </ul>
-
     <h1>Enter a new dream</h1>
     
     {{tagNames}}
@@ -43,7 +39,15 @@
       <button type="submit">Save Dream</button>
       
     </form>
-    
+
+    <ul>
+      <li v-for="error in errors">{{ error }}</li>
+    </ul>
+
+<!--     <div v-if="status">
+      {{error.response.data.errors}}
+    </div> -->
+
   </div>
 </template>
 
@@ -78,6 +82,7 @@ export default {
         this.$router.push("/dreams/" + response.data.id ); //change this to dreams show page once made
       }).catch(error => {
         this.errors = error.response.data.errors;
+        console.log(error.response.data.errors);
       });
     },
     // addInput: function() {
