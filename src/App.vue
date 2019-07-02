@@ -8,7 +8,8 @@
       <div v-if="!isLoggedIn()"><router-link to="/signup">Signup</router-link></div>
       <div v-if="!isLoggedIn()"><router-link to="/login">Login</router-link></div>
       <div v-if="isLoggedIn()"><router-link to="/logout">Logout</router-link></div>
-      <!-- <router-link to="/users/:id">My Dreams</router-link> -->
+<!--       <div v-if="isLoggedIn()"><router-link to="/users/" + response.data.user_id>My Dreams</router-link></div>
+ -->      <!-- <router-link to="/users/:id">My Dreams</router-link> -->
 
     </div>
     <router-view :key="$route.path"/>
@@ -38,9 +39,22 @@
 </style>
 
 <script>
+import axios from "axios";
   
 export default {
+  data: function() {
+    return {
+      // userid: localStorage.getItem('user_id'),
+      // dream: {},
+      // tags: [],
+      user: {}
+    };
+  },
   created: function() {
+    axios.get("/api/users/" + localStorage.getItem('user_id')).then(response => {
+      this.user = response.data;
+      console.log(this.user);
+    });
   },
   methods: {
     isLoggedIn: function() {

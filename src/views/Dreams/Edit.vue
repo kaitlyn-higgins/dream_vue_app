@@ -19,7 +19,6 @@
         <input v-if="shownInputs > 3" type="text" id="tag4" v-model="tag_names[4]">
         <input v-if="shownInputs > 4" type="text" id="tag5" v-model="tag_names[5]">
         <a v-on:click="shownInputs++">+</a>
-        
 
       </div>
       <div>
@@ -40,6 +39,10 @@
       </div>
 
       <button type="submit">Save Dream</button>
+
+      <div v-if="status">
+        {{error.response.data.errors}}
+      </div>
       
     </form>
     
@@ -55,6 +58,7 @@ export default {
       tag_names: [],
       dream: {},
       errors: [],
+      status: "", 
       shownInputs: 0
     };
   },
@@ -79,6 +83,8 @@ export default {
         this.$router.push("/dreams/" + response.data.id ); //change this to dreams show page once made
       }).catch(error => {
         this.errors = error.response.data.errors;
+        console.log(error.response.data.errors);
+        // this.status = error.response.status;
       });
     }
   }
