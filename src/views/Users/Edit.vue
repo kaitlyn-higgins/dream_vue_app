@@ -1,10 +1,6 @@
 <template>
   <div class="users-edit">
 
-    <ul>
-      <li v-for="error in errors">{{ error }}</li>
-    </ul>
-
     <h1>Edit Account</h1>
 
     <form v-on:submit.prevent="submit()">
@@ -39,6 +35,10 @@
       <div>
         <button v-on:click="destroyUser()">Delete Account</button>
       </div>
+
+      <ul>
+        <li v-for="error in errors">{{ error }}</li>
+      </ul>
     
   </div>
 </template>
@@ -74,6 +74,7 @@ export default {
         this.$router.push("/users/" + response.data.id ); //change this to dreams show page once made
       }).catch(error => {
         this.errors = error.response.data.errors;
+        console.log(error.response.data.errors);
       });
     },
     destroyUser: function() {
