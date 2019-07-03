@@ -15,7 +15,7 @@
 <!--     <div v-for="dream in dreams"> -->
     <div v-for="dream in filterBy(dreams, dreamFilter, 'title', 'content', 'tags')">
       <h2 class="title"><router-link :to="'/dreams/' + dream.id">{{ dream.title }}</router-link></h2>
-      <h5 class="username">{{ dream.user.username }}</h5>
+      <h5 class="username"><router-link :to="'/users/' + dream.user.id">{{ dream.user.username }}</router-link></h5>
       <div class="image_url"><img v-bind:src="dream.image_url" alt=""></div>
       <p class="content">{{ dream.content }}</p>
 
