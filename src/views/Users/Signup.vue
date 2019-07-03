@@ -17,8 +17,9 @@
           <input type="number" class="form-control" v-model="zip_code">
         </div>
         <div class="form-group">
-          <label>Gender:</label> 
+          <label>Gender:<small> optional</small></label> 
           <input type="text" class="form-control" v-model="gender">
+          <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Why do we ask?" data-content="One of our main goals is to share dream data with the scientific community studying sleep and dreams. Gender could prove useful in pattern analyzation, so we give you the option of providing yours.">?</button>
         </div>
         <div class="form-group">
           <label>Password:</label>
