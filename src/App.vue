@@ -8,15 +8,15 @@
       <div v-if="!isLoggedIn()"><router-link to="/signup">Signup</router-link></div>
       <div v-if="!isLoggedIn()"><router-link to="/login">Login</router-link></div>
       <div v-if="isLoggedIn()"><router-link to="/logout">Logout</router-link></div>
-<!--       <div v-if="isLoggedIn()"><router-link to="/users/" + response.data.user_id>My Dreams</router-link></div>
- -->      <!-- <router-link to="/users/:id">My Dreams</router-link> -->
+      <div v-if="isLoggedIn()"><router-link v-bind:to="'/users/' + user.id ">My Dreams</router-link></div>
+      <!-- <router-link to="/users/:id">My Dreams</router-link> -->
 
     </div>
     <router-view :key="$route.path"/>
   </div>
 </template>
 
-<!-- <style>
+<style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -36,7 +36,7 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
-</style> -->
+</style>
 
 <script>
 import axios from "axios";
