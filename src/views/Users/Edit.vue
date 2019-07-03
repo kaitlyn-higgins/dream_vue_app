@@ -32,13 +32,38 @@
       <button type="submit">Update</button>
     </form>
 
-      <div>
-        <button v-on:click="destroyUser()">Delete Account</button>
-      </div>
 
       <ul>
         <li v-for="error in errors">{{ error }}</li>
       </ul>
+
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Delete Account
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Warning: this action is irreversible</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div>
+                <h3>Are you sure you want to permanently delete your account?</h3>
+             </div>
+            </div>
+            <div class="modal-footer">
+              <button v-on:click="destroyUser()" type="button" class="btn btn-secondary" data-dismiss="modal">Delete Account</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
     
   </div>
 </template>
