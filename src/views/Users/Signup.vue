@@ -3,9 +3,7 @@
     <div class="container">
       <form v-on:submit.prevent="submit()">
         <h1>Signup</h1>
-        <ul>
-          <li class="text-danger" v-for="error in errors">{{ error }}</li>
-        </ul>
+        
         <div class="form-group">
           <label>Username:</label> 
           <input type="text" class="form-control" v-model="username">
@@ -32,6 +30,11 @@
         </div>
         <input type="submit" class="btn btn-primary" value="Submit">
       </form>
+
+      <ul>
+        <li v-for="error in errors">{{ error }}</li>
+      </ul>
+
     </div>
   </div>
 </template>
@@ -68,6 +71,7 @@ export default {
         })
         .catch(error => {
           this.errors = error.response.data.errors;
+          console.log(error.response.data.errors);
         });
     }
   }
