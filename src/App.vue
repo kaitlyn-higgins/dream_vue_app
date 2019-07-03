@@ -13,7 +13,8 @@
 
     </div>
     <router-view :key="$route.path"/>
-  </div>
+<!--     <UsersShow :key="UsersShow.user"/>
+ -->  </div>
 </template>
 
 <style>
@@ -47,7 +48,8 @@ export default {
       // userid: localStorage.getItem('user_id'),
       // dream: {},
       // tags: [],
-      user: {}
+      user: {},
+
     };
   },
   created: function() {
@@ -63,6 +65,9 @@ export default {
       } else {
         return false;
       }
+    },
+    forceRerender() {
+      this.user += 1;
     }
   }
 };

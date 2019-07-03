@@ -5,37 +5,52 @@
       <li v-for="error in errors">{{ error }}</li>
     </ul>
 
+<!-- current user options / views -->
 
-<!--   <div v-if="current_user.id === user.id">
- -->
-    <h2>Welcome back, {{ user.username }}</h2>
+    <div v-if="isCurrentUser()">
+      <h2>Welcome back, {{ user.username }}</h2>
 
-    <button><router-link to="/dreams/new">Enter a new dream</router-link></button>
-   
-    <button> <router-link v-bind:to="'/users/' + user.id + '/edit'">Edit Account Info</router-link></button>
-    
-    <!-- filter search bar -->
+      <button><router-link to="/dreams/new">Enter a new dream</router-link></button>
+     
+      <button> <router-link v-bind:to="'/users/' + user.id + '/edit'">Edit Account Info</router-link></button>
+    </div>
+
+
+<!-- dream strand text -->
+
     <div>
-      <label for="dream-filter">Search dreams</label>
+      <h2 v-if="isCurrentUser()">Your dream strand</h2>
+      <h2 v-else>{{user.username}}'s dream strand</h2>
+
+    </div>
+
+
+    <!-- filter search bar -->
+
+    <div>
+      <label for="dream-filter" v-if="isCurrentUser()">Search your dreams</label>
+      <label for="dream-filter" v-else>Search {{user.username}}'s dreams</label>
       <input type="text" placeholder="Enter search term" v-model="dreamFilter" list="titles">
     </div>
 
 
     <!-- autocompletion -->
+
     <datalist id="titles">
       <option v-for="dream in user.dreams">{{ dream.title }}</option>
     </datalist>
 
 
     <!-- sorting buttons -->
+
     <div>
       <button v-on:click="setSortAttribute('updated_at')">Sort by Date</button>
         <i v-if="sortAttribute === 'updated_at' && sortAscending === 1">^</i>
         <i v-if="sortAttribute === 'updated_at' && sortAscending === -1"></i>
     </div>
-    <!-- main content w/ filter enabled -->
 
-    <!-- <div v-for="dream in filterBy(user.dreams, dreamFilter, 'title', 'content', 'tags')"> -->
+
+    <!-- main content w/ filter enabled -->
    
     <div v-for="dream in orderBy(filterBy(user.dreams, dreamFilter, 'title', 'content', 'tags'), sortAttribute, sortAscending)">  
 
@@ -123,6 +138,17 @@ export default {
         this.sortAscending = 1;
       }
       this.sortAttribute = attribute;
+    },
+    isCurrentUser: function() {
+      console.log(typeof localStorage.getItem("user_id"));
+      console.log(typeof this.user.id);
+      if (localStorage.getItem("user_id") == this.user.id) {
+        console.log("true");
+        return true;
+      } else {
+        console.log("false");
+        return false;
+      }
     },
 
     formattedDate: function(date) {
