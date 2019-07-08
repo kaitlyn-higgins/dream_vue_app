@@ -37,6 +37,12 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+#container {
+  min-width: 320px;
+  max-width: 800px;
+  margin: 0 auto;
+}
 </style>
 
 <script>

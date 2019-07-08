@@ -14,6 +14,7 @@ import DreamsShow from './views/Dreams/Show.vue';
 import DreamsEdit from './views/Dreams/Edit.vue';
 import TagsIndex from './views/Tags/Index.vue';
 import TagsShow from './views/Tags/Show.vue';
+import Bubblechart from './views/Tags/Bubblechart.vue';
 
 Vue.use(Router);
 
@@ -90,6 +91,11 @@ export default new Router({
       path: '/tags/:id',
       name: 'tags-show',
       component: TagsShow
+    },
+    {
+      path: '/bubblechart',
+      name: 'bubblechart',
+      component: Bubblechart
     }
     // {
     //   path: '/about',
