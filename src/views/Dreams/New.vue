@@ -16,6 +16,11 @@
         <input v-if="shownInputs > 2" type="text" id="tag3" v-model="tagNames[3]">
         <input v-if="shownInputs > 3" type="text" id="tag4" v-model="tagNames[4]">
         <input v-if="shownInputs > 4" type="text" id="tag5" v-model="tagNames[5]">
+        <input v-if="shownInputs > 5" type="text" id="tag6" v-model="tagNames[6]">
+        <input v-if="shownInputs > 6" type="text" id="tag7" v-model="tagNames[7]">
+        <input v-if="shownInputs > 7" type="text" id="tag8" v-model="tagNames[8]">
+        <input v-if="shownInputs > 8" type="text" id="tag9" v-model="tagNames[9]">
+        <input v-if="shownInputs > 9" type="text" id="tag10" v-model="tagNames[10]">
         <a v-on:click="shownInputs++">+</a>
 
       </div>
