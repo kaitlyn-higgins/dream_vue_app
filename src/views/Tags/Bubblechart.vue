@@ -71,7 +71,7 @@
 import axios from "axios";
 
 export default {
-  data () {
+  data() {
     return {
       tags: []
     };
@@ -82,14 +82,14 @@ export default {
       console.log(this.tags);
     });
   },
-  mounted () {
+  mounted() {
     Highcharts.chart('container', {
       chart: {
         type: 'packedbubble',
         height: '100%'
       },
       title: {
-        text: 'Carbon emissions around the world (2014)'
+        text: 'Most popular dream tags'
       },
       tooltip: {
         useHTML: true,
@@ -97,7 +97,7 @@ export default {
       },
       plotOptions: {
         packedbubble: {
-          minSize: '30%',
+          minSize: '40%',
           maxSize: '120%',
           zMin: 0,
           zMax: 1000,
@@ -111,7 +111,7 @@ export default {
             filter: {
               property: 'y',
               operator: '>',
-              value: 250
+              value: 0
             },
             style: {
               color: 'black',
@@ -119,15 +119,34 @@ export default {
               fontWeight: 'normal'
             }
           }
+        },
+        series: {
+          cursor: 'pointer',
+          point: {
+            events: {
+              click: function() {
+                // axios.get("/api/tags").then(response => {
+                //   this.tags = response.data;
+                //   console.log(this.tags);
+                //   this.$router.push("/tags/1");
+                // });
+                
+
+                location.href = '/tags';
+                // location.href = 'https://en.wikipedia.org/wiki/' +
+                //       this.options.name;
+              }
+            }
+          }
         }
       },
       series: [{
-        name: 'Europe',
+        name: 'Dream Tags',
         data: [{
           name: 'Germany',
           value: 767.1
         }, {
-          name: 'Croatia',
+          name: 'Dolphin',
           value: 20.7
         },
         {
