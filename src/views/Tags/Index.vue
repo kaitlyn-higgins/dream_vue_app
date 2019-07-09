@@ -100,18 +100,22 @@ export default {
             point: {
               events: {
                 click: function() {
-                  // axios.get("/api/tags").then(response => {
-                  //   this.tags = response.data;
-                  console.log(this.options.name);
+                  axios.get("/api/tags").then(response => {
+                    this.tags = response.data.tags;
+                    console.log(this.options.name);
+                    console.log(this.tags);
 
-                  // this.$router.push("/tags/1");
-                  // });
-                  
+                    var obj = this.tags.find(tag => tag.name === this.options.name);
+                    console.log(obj);
 
-                  location.href = '/tags/';
-                  // location.href = 'https://en.wikipedia.org/wiki/' +
-                  //       this.options.name;
-                }
+                    // this.$router.push("/tags/" + this.tags.find(o => o.name === this.options.name).id);
+                    // });
+                    location.href = '/tags/' + obj.id;
+                    
+                  },
+
+                  );
+                },
               }
             }
           }
