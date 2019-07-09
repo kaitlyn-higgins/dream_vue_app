@@ -53,10 +53,11 @@ export default {
   },
   created: function() {
     axios.get("/api/tags").then(response => {
-      this.tags = response.data.formatted_series;
+      this.formatted_series = response.data.formatted_series;
+      this.tags = response.data.tags;
       // console.log(this.tags);
 
-      console.log(this.tags);
+      // console.log(this.tags);
       Highcharts.chart('container', {
         chart: {
           type: 'packedbubble',
@@ -67,12 +68,12 @@ export default {
         },
         tooltip: {
           useHTML: true,
-          pointFormat: '<b>{point.name}:</b> {point.value}m CO<sub>2</sub>'
+          pointFormat: '<b>{point.name}:</b> {point.value} occurrence(s)'
         },
         plotOptions: {
           packedbubble: {
-            minSize: '70%',
-            maxSize: '120%',
+            minSize: '80%',
+            maxSize: '180%',
             zMin: 0,
             zMax: 1000,
             layoutAlgorithm: {
@@ -101,12 +102,13 @@ export default {
                 click: function() {
                   // axios.get("/api/tags").then(response => {
                   //   this.tags = response.data;
-                  //   console.log(this.tags);
-                  //   this.$router.push("/tags/1");
+                  console.log(this.options.name);
+
+                  // this.$router.push("/tags/1");
                   // });
                   
 
-                  location.href = '/tags';
+                  location.href = '/tags/';
                   // location.href = 'https://en.wikipedia.org/wiki/' +
                   //       this.options.name;
                 }
@@ -116,7 +118,7 @@ export default {
         },
         series: [{
           name: 'Dream Tags',
-          data: this.tags
+          data: this.formatted_series
         },]
       });
     });
