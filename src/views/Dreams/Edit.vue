@@ -20,8 +20,21 @@
         <input v-if="shownInputs > 8" type="text" id="tag9" v-model="tag_names[9]">
         <input v-if="shownInputs > 9" type="text" id="tag10" v-model="tag_names[10]">
         <a v-on:click="shownInputs++">+</a>
+      </div>
+
+      <!-- theme checkboxes -->
+      <div class="form-group col-md-12">
+        <label for="themes">Dream Themes</label><br>
+
+        <span v-for="theme in themes">
+          <input type="checkbox" :value="theme.id" v-model="themeIds"> {{ theme.name }}
+        </span>
+        <br>
+        <span>theme Ids: {{ themeIds }}</span>
 
       </div>
+
+
       <div>
         <label for="dreamTitle">Title</label>
         <input type="text" id="dreamTitle" placeholder="Talented Dinosaur" v-model="dream.title">
@@ -65,14 +78,27 @@ export default {
       dream: {},
       errors: [],
       status: "", 
-      shownInputs: 0
+      shownInputs: 0,
+      themes: [],
+      themeIds: [],
+      // dreamThemeIds: [this.themes]
     };
   },
   created: function() {
     axios.get("/api/dreams/" + this.$route.params.id).then(response => {
       this.dream = response.data;
+      this.dream.themes = response.data.themes;
       console.log(this.dream);
+      console.log(this.dream.themes);
+      this.themeIds = this.dream.themes.map(theme => theme.id);
+      console.log(this.themeIds);
+
     });
+    axios.get("/api/themes").then(response => {
+      this.themes = response.data;
+      // console.log(this.themes);
+    });
+
   },
   methods: {
     submit: function() {
@@ -83,6 +109,7 @@ export default {
         content: this.dream.content,
         image_url: this.dream.image_url,
         is_public: this.dream.is_public,
+        theme_ids: this.themeIds
       };
       axios.patch("/api/dreams/" + this.dream.id, params).then(response => {
         console.log("success", response.data);

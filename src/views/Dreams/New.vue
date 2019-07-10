@@ -32,8 +32,8 @@
           <input type="checkbox" :value="theme.id" v-model="themeIds"> {{ theme.name }}
         </span>
         <br>
-        <span>themeIds: {{ themeIds }}</span>
-
+<!--         <span>themeIds: {{ themeIds }}</span>
+ -->
       </div>
 
       <div>
