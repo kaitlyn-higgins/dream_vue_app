@@ -12,7 +12,7 @@
 
     <div v-for="dream in tag.associated_dreams">
       <h2 class="title"><router-link v-bind:to="'/dreams/' + dream.id">{{ dream.title }}</router-link></h2>
-      <h5 class="username"><router-link v-bind:to="'/users/' + user.id">{{ dream.user.username }}</router-link></h5>
+      <h5 class="username"><router-link v-bind:to="'/users/' + dream.user.id">{{ dream.user.username }}</router-link></h5>
       <div class="image_url"><img v-bind:src="dream.image_url" alt=""></div>
       <p class="content">{{ dream.content }}</p>
 

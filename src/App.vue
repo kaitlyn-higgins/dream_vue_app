@@ -9,12 +9,14 @@
       <div v-if="!isLoggedIn()"><router-link to="/login">Login</router-link></div>
       <div v-if="isLoggedIn()"><router-link to="/logout">Logout</router-link></div>
       <div v-if="isLoggedIn()"><router-link v-bind:to="'/users/' + user.id ">My Dreams</router-link></div>
+      <!-- <div v-if="isLoggedIn()"><router-link v-bind:to="'/users/' + user.id ">My Dreams</router-link></div> -->
       <!-- <router-link to="/users/:id">My Dreams</router-link> -->
 
     </div>
     <router-view :key="$route.path"/>
+    </div>
 <!--     <UsersShow :key="UsersShow.user"/>
- -->  </div>
+ -->
 </template>
 
 <style>
@@ -38,11 +40,11 @@
   color: #42b983;
 }
 
-#container {
+/*#container {
   min-width: 320px;
   max-width: 800px;
   margin: 0 auto;
-}
+}*/
 </style>
 
 <script>
@@ -54,7 +56,7 @@ export default {
       // userid: localStorage.getItem('user_id'),
       // dream: {},
       // tags: [],
-      user: {},
+      user: {}
 
     };
   },

@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import axios from "axios";
+import HighchartsVue from 'highcharts-vue';
 
 axios.defaults.baseURL = 
   process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/";
@@ -13,6 +14,7 @@ if (jwt) {
 }
 
 Vue.config.productionTip = false;
+Vue.use(HighchartsVue);
 
 new Vue({
   router,

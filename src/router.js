@@ -7,14 +7,12 @@ import Login from "./views/Users/Login.vue";
 import Logout from "./views/Users/Logout.vue";
 import UsersShow from "./views/Users/Show.vue";
 import UsersEdit from "./views/Users/Edit.vue";
-// import UsersNew from './views/UsersNew.vue';
 import DreamsIndex from './views/Dreams/Index.vue';
 import DreamsNew from './views/Dreams/New.vue';
 import DreamsShow from './views/Dreams/Show.vue';
 import DreamsEdit from './views/Dreams/Edit.vue';
 import TagsIndex from './views/Tags/Index.vue';
 import TagsShow from './views/Tags/Show.vue';
-import Bubblechart from './views/Tags/Bubblechart.vue';
 
 Vue.use(Router);
 
@@ -91,11 +89,6 @@ export default new Router({
       path: '/tags/:id',
       name: 'tags-show',
       component: TagsShow
-    },
-    {
-      path: '/bubblechart',
-      name: 'bubblechart',
-      component: Bubblechart
     }
     // {
     //   path: '/about',
