@@ -17,8 +17,11 @@
         <input type="number" id="zip_code"  v-model="user.zip_code">
       </div>
       <div>
-        <label for="gender">Gender</label>
-        <input type="text" id="gender" v-model="user.gender">
+        <label for="gender">Gender <small> optional</small></label><br>
+        <input type="radio" id="gender" name="gender" value="male" v-model="user.gender">  male
+        <input type="radio" id="gender" name="gender" value="female" v-model="user.gender">  female  
+        <input type="radio" id="gender" name="gender" value="non_specified" v-model="user.gender"> prefer not to specify
+        <input type="radio">Other<input type="text" name="gender" value="" v-model="user.gender"/>
       </div>
       <div>
         <label for="password">New Password:</label>
@@ -38,7 +41,7 @@
       </ul>
 
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      <button type="button" data-toggle="modal" data-target="#exampleModal">
         Delete Account
       </button>
 

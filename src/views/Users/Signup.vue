@@ -20,9 +20,8 @@
           <label>Gender:<small> optional</small></label><br>
           <input type="radio" name="gender" value="male" v-model="gender">  male
           <input type="radio" name="gender" value="female" v-model="gender">  female  
-          <input type="radio" name="gender" value="other" v-model="gender"> other
-<!--           <input v-if="value =='other'" type="text" name="gender" v-model="gender" placeholder="specify (optional)"> -->
           <input type="radio" name="gender" value="non_specified" v-model="gender"> prefer not to specify<br>
+          <input type="radio">Other <input type="text" name="gender" value="" v-model="gender"/>
         </div>
         <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Why do we ask?" data-content="One of our main goals is to share dream data with the scientific community studying sleep and dreams. Gender could prove useful in pattern analyzation, so we give you the option of providing yours.">?</button>
         <div class="form-group">
