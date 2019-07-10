@@ -7,6 +7,7 @@
 
     <h2>{{ dream.title }}</h2>
     <h5><router-link v-bind:to="'/users/' + dream.user.id">{{ dream.user.username }}</router-link>{{  }}</h5>
+    <li v-for="theme in dream.themes">{{ theme.name }}</li>
     <div><img v-bind:src="dream.image_url" alt=""></div>
     <p>{{ dream.content }}</p>
 

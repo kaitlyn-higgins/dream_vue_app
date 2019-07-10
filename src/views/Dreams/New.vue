@@ -22,8 +22,20 @@
         <input v-if="shownInputs > 8" type="text" id="tag9" v-model="tagNames[9]">
         <input v-if="shownInputs > 9" type="text" id="tag10" v-model="tagNames[10]">
         <a v-on:click="shownInputs++">+</a>
+      </div>
+
+      <!-- theme checkboxes -->
+      <div class="form-group col-md-12">
+        <label for="themes">Dream Themes</label><br>
+
+        <span v-for="theme in themes">
+          <input type="checkbox" :value="theme.id" v-model="themeIds"> {{ theme.name }}
+        </span>
+        <br>
+        <span>themeIds: {{ themeIds }}</span>
 
       </div>
+
       <div>
         <label for="dreamTitle">Title</label>
         <input type="text" id="dreamTitle" v-model="newDreamTitle">
@@ -68,10 +80,16 @@ export default {
       newDreamImageUrl: "",
       newDreamIsPublic: "",
       shownInputs: 0,
-      errors: []
+      errors: [],
+      themes: [],
+      themeIds: []
     };
   },
   created: function() {
+    axios.get("/api/themes").then(response => {
+      this.themes = response.data;
+      console.log(this.themes);
+    });
   },
   methods: {
     submit: function() {
@@ -81,6 +99,7 @@ export default {
         content: this.newDreamContent,
         image_url: this.newDreamImageUrl,
         is_public: this.newDreamIsPublic,
+        theme_ids: this.themeIds
       };
       axios.post("/api/dreams", params).then(response => {
         console.log("success", response.data);
