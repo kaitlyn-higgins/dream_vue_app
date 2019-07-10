@@ -21,9 +21,13 @@
         <input type="radio" id="gender" name="gender" value="male" v-model="user.gender">  male
         <input type="radio" id="gender" name="gender" value="female" v-model="user.gender">  female  
         <input type="radio" id="gender" name="gender" value="non_specified" v-model="user.gender"> prefer not to specify
-        <input type="radio">Other<input type="text" name="gender" value="" v-model="user.gender"/>
+        <input type="radio">Other<input type="text" name="gender" value="" v-model="user.gender"/><br>
       </div>
+
+      <!-- password change -->
       <div>
+        <h5>Password and confirmation are <strong>required</strong></h5>
+        <h6>You may change it at this time if you would like, but you may also continue to use your current password.</h6>
         <label for="password">New Password:</label>
         <input type="password" id="password" v-model="user.password">
       </div>

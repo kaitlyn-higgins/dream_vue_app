@@ -99,23 +99,12 @@ export default {
             cursor: 'pointer',
             point: {
               events: {
-                click: function() {
-                  axios.get("/api/tags").then(response => {
-                    this.tags = response.data.tags;
-                    console.log(this.options.name);
-                    console.log(this.tags);
+                click: function(e) {
 
-                    var obj = this.tags.find(tag => tag.name === this.options.name);
-                    console.log(obj);
-
-                    // this.$router.push("/tags/" + this.tags.find(o => o.name === this.options.name).id);
-                    // });
-                    location.href = '/tags/' + obj.id;
-                    
-                  },
-
-                  );
-                },
+                  this.$router.push("/tags/" + this.tags.find(o => o.name === e.point.name).id);
+                  // console.log(e.point.name);
+                  // console.log(this.tags);
+                }.bind(this),
               }
             }
           }

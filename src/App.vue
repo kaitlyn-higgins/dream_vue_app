@@ -8,7 +8,7 @@
       <div v-if="!isLoggedIn()"><router-link to="/signup">Signup</router-link></div>
       <div v-if="!isLoggedIn()"><router-link to="/login">Login</router-link></div>
       <div v-if="isLoggedIn()"><router-link to="/logout">Logout</router-link></div>
-      <div v-if="isLoggedIn()"><router-link v-bind:to="'/users/' + user.id ">My Dreams</router-link></div>
+      <div v-if="isLoggedIn()"><router-link v-bind:to="'/users/' + getUserId() ">My Dreams</router-link></div>
       <!-- <div v-if="isLoggedIn()"><router-link v-bind:to="'/users/' + user.id ">My Dreams</router-link></div> -->
       <!-- <router-link to="/users/:id">My Dreams</router-link> -->
 
@@ -56,15 +56,8 @@ export default {
       // userid: localStorage.getItem('user_id'),
       // dream: {},
       // tags: [],
-      user: {}
 
     };
-  },
-  created: function() {
-    axios.get("/api/users/" + localStorage.getItem('user_id')).then(response => {
-      this.user = response.data;
-      console.log(this.user);
-    });
   },
   methods: {
     isLoggedIn: function() {
@@ -74,8 +67,8 @@ export default {
         return false;
       }
     },
-    forceRerender() {
-      this.user += 1;
+    getUserId: function() {
+      return localStorage.getItem('user_id');
     }
   }
 };

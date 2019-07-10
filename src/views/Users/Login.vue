@@ -46,8 +46,8 @@ export default {
           localStorage.setItem("user_id", response.data.user_id);
           localStorage.setItem("username", response.data.username);
           // console.log(response.data);
-          location.href = '/users/' + response.data.user_id;
-          // this.$router.push("/users/" + response.data.user_id);
+          // location.href = '/users/' + response.data.user_id;
+          this.$router.push("/users/" + response.data.user_id);
         })
         .catch(error => {
           this.errors = ["Invalid email or password."];
