@@ -53,7 +53,7 @@ export default {
   },
   created: function() {
     axios.get("/api/tags").then(response => {
-      this.formatted_series = response.data.formatted_series;
+      this.formatted_tag_series = response.data.formatted_tag_series;
       this.tags = response.data.tags;
       // console.log(this.tags);
 
@@ -111,7 +111,7 @@ export default {
         },
         series: [{
           name: 'Dream Tags',
-          data: this.formatted_series
+          data: this.formatted_tag_series
         },]
       });
     });
