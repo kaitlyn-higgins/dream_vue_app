@@ -34,6 +34,11 @@
     </div>
 
 
+    <label for="dream-filter">Find dreams by theme</label>
+    <span v-for="theme in themes">
+      <input type="radio" id="theme.name" :value="theme.name" v-model="dreamFilter"> {{ theme.name }}
+    </span>
+
     <!-- autocompletion -->
 
     <datalist id="titles">
@@ -52,7 +57,7 @@
 
     <!-- main content w/ filter enabled -->
    
-    <div v-for="dream in orderBy(filterBy(user.dreams, dreamFilter, 'title', 'content', 'tags'), sortAttribute, sortAscending)">  
+    <div v-for="dream in orderBy(filterBy(user.dreams, dreamFilter, 'title', 'content', 'tags', 'themes'), sortAttribute, sortAscending)">  
 
       <h2 class="title"><router-link v-bind:to="'/dreams/' + dream.id">{{ dream.title }}</router-link></h2>
       <p class="date">Posted / updated: {{ formattedDate(dream.updated_at) }}</p>
@@ -118,7 +123,8 @@ export default {
       errors: [],
       dreamFilter: "",
       sortAttribute: "updated_at",
-      sortAscending: 1
+      sortAscending: 1,
+      themes: []
     };
   },
   created: function() {
@@ -128,6 +134,10 @@ export default {
       // console.log(this.user.dreams.tags);
     }).catch(error => {
       this.errors = error.response.data.errors;
+    });
+    axios.get("/api/themes").then(response => {
+      this.themes = response.data;
+      console.log(this.themes);
     });
   },
   methods: {
