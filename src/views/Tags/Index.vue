@@ -54,6 +54,7 @@ export default {
   created: function() {
     axios.get("/api/tags").then(response => {
       this.formatted_tag_series = response.data.formatted_tag_series;
+      this.formatted_theme_series = response.data.formatted_theme_series;
       this.tags = response.data.tags;
       // console.log(this.tags);
 
@@ -64,7 +65,7 @@ export default {
           height: '100%'
         },
         title: {
-          text: 'Most popular dream tags'
+          text: 'Most popular dream tags & themes'
         },
         tooltip: {
           useHTML: true,
@@ -112,7 +113,11 @@ export default {
         series: [{
           name: 'Dream Tags',
           data: this.formatted_tag_series
-        },]
+        },
+        {
+          name: 'Themes',
+          data: this.formatted_theme_series
+        }]
       });
     });
   },
