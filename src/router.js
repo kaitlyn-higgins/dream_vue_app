@@ -14,6 +14,7 @@ import DreamsEdit from './views/Dreams/Edit.vue';
 import TagsIndex from './views/Tags/Index.vue';
 import TagsShow from './views/Tags/Show.vue';
 import Map from './views/Tags/Map.vue';
+import SpiderMap from './views/Tags/SpiderMap.vue';
 
 Vue.use(Router);
 
@@ -96,6 +97,11 @@ export default new Router({
       path: '/map',
       name: 'map',
       component: Map
+    },
+    {
+      path: '/spider-map',
+      name: 'spider-map',
+      component: SpiderMap
     }
     // {
     //   path: '/about',

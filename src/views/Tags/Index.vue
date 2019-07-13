@@ -18,6 +18,8 @@
 
 
     <div id="container"></div>
+    <div id='map'></div>
+
 
     <!-- tag list with filter enabled -->
     <div v-for="tag in filterBy(tags, tagFilter, 'name')">
@@ -34,6 +36,20 @@
     min-width: 320px;
     max-width: 800px;
     margin: 0 auto;
+  }
+  #map {top:0; bottom:0; width:100%; height:700px; }
+  #marker {
+  background-image: url('https://docs.mapbox.com/mapbox-gl-js/assets/washington-monument.jpg');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  }
+   
+  .mapboxgl-popup {
+  max-width: 400px;
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
   }
 </style>
 
@@ -55,9 +71,10 @@ export default {
     axios.get("/api/tags").then(response => {
       this.formatted_tag_series = response.data.formatted_tag_series;
       this.formatted_theme_series = response.data.formatted_theme_series;
+      this.map_tags = response.data.map_tags;
       this.tags = response.data.tags;
       // console.log(this.tags);
-
+      console.log(this.map_tags);
       // console.log(this.tags);
       Highcharts.chart('container', {
         chart: {
@@ -119,6 +136,7 @@ export default {
           data: this.formatted_theme_series
         }]
       });
+      
     });
   },
 };
