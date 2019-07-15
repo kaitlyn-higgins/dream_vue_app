@@ -17,6 +17,10 @@
         <script src="assets/js/html5shiv.min.js"></script>
         <script src="assets/js/respond.min.js"></script>
     <![endif]-->
+
+    <!-- mapbox -->
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.css' rel='stylesheet' />
+    
   </head>
   <body>
     
@@ -25,5 +29,24 @@
     <script src="/assets/js/plugins.min.js"></script>
     <script src="/assets/js/app.min.js"></script>
     <script src="/assets/js/index.js"></script>
+
+    <!-- highcharts -->
+        <script>
+          var Highcharts = require('highcharts');
+
+    // Load module after Highcharts is loaded
+    require('highcharts/modules/exporting')(Highcharts);
+
+    // Create the chart
+    Highcharts.chart('container', { /*Highcharts options*/ });
+        </script>
+
+    <!-- highchart bubble chart -->
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/highcharts-more.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+      <!-- mapbox js-->
+      <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.js'></script>
   </body>
 </html>
