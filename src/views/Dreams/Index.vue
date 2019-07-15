@@ -2,7 +2,7 @@
   <div class="dreams-index">
 
 
-    <h1>Dreams Index</h1>
+    <h1>Collective Dream Web</h1>
     
     <!-- filter search bar -->
     <div>
@@ -28,7 +28,8 @@
     </div> -->
 
 <!--     <div v-for="dream in dreams"> -->
-    <div v-for="dream in orderBy(filterBy(dreams, dreamFilter, 'title', 'content', 'tags', 'themes'),sortAttribute, sortAscending)">
+
+    <!-- <div v-for="dream in orderBy(filterBy(dreams, dreamFilter, 'title', 'content', 'tags', 'themes'),sortAttribute, sortAscending)">
       <h2 class="title"><router-link :to="'/dreams/' + dream.id">{{ dream.title }}</router-link></h2>
       <h5 class="username"><router-link :to="'/users/' + dream.user.id">{{ dream.user.username }}</router-link></h5>
       <h6>Dream Themes: </h6>
@@ -40,12 +41,80 @@
         <h4 class="tag_name">
         <ul>
           <li><router-link :to="'/tags/' + tag.id">{{ tag.name }}</router-link></li>
-          <!-- <li><router-link to="{ name: 'tags-show', params: { tagId: tag.id}}">{{ tag.name }}</router-link></li> -->
         </ul>
         </h4>
       </div> 
 
-    </div>
+    </div> -->
+    <div class="material-background"></div>
+       <div class="container">
+
+          <div class="row">
+            <div class="col">
+              <div class="row masonry-container">
+
+                <div v-for="dream in orderBy(filterBy(dreams, dreamFilter, 'title', 'content', 'tags', 'themes'),sortAttribute, sortAscending)" class="col-lg-4 col-md-6 masonry-item wow fadeInUp animation-delay-2">
+                  <div class="card">
+                    <figure class="ms-thumbnail ms-thumbnail-horizontal">
+                      <img v-bind:src="dream.image_url" alt="" class="img-fluid">
+                      <!-- <figcaption class="ms-thumbnail-caption text-center">
+                        <div class="ms-thumbnail-caption-content">
+                          <h4 class="ms-thumbnail-caption-title mb-2">Lorem ipsum dolor</h4>
+                          <a href="javascript:void(0)" class="btn-circle btn-circle-raised btn-circle-xs mr-1 btn-circle-white color-danger"><i class="zmdi zmdi-favorite"></i></a>
+                          <a href="javascript:void(0)" class="btn-circle btn-circle-raised btn-circle-xs ml-1 mr-1 btn-circle-white color-warning"><i class="zmdi zmdi-star"></i></a>
+                          <a href="javascript:void(0)" class="btn-circle btn-circle-raised btn-circle-xs ml-1 btn-circle-white color-success"><i class="zmdi zmdi-share"></i></a>
+                        </div>
+                      </figcaption> -->
+                    </figure>
+                    <div class="card-body overflow-hidden text-center">
+                      <a href="javascript:void(0)" class="btn-circle btn-circle-warning btn-circle-raised btn-card-float right wow zoomInDown index-2"><i class="zmdi zmdi-star"></i></a>
+                      <h4 class="color-warning"><router-link :to="'/dreams/' + dream.id">{{ dream.title }}</router-link></h4>
+
+                      <div v-for="tag in dream.tags">
+                        <h4 class="tag_name">
+                        <ul>
+                          <li><p><router-link :to="'/tags/' + tag.id">{{ tag.name }}</router-link></p></li>
+                        </ul>
+                        </h4>
+                      </div> 
+
+
+                      <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam sed labore autem nesciunt ea veniam recusandae necessitatibus reprehenderit.</p> -->
+                    <router-link :to="'/users/' + dream.user.id" class="btn btn-warning"><i class="zmdi zmdi-star"></i>{{ dream.user.username }}</router-link>
+                   <!--    <a href="javascript:void(0)" class="btn btn-warning"><i class="zmdi zmdi-star"></i> Button</a> -->
+
+                   <router-link :to="'/dreams/' + dream.id"></router-link>
+                      <router-link :to="'/dreams/' + dream.id" class="btn btn-royal btn-raised"><i class="zmdi zmdi-globe"></i> See dream content</router-link>
+                    </div>
+                  </div>
+                </div> <!-- item -->
+  <!--               <div class="col-lg-4 col-md-6">
+                  <div class="card width-auto">
+                    <figure class="ms-thumbnail ms-thumbnail-horizontal">
+                      <img src="assets/img/demo/port2.jpg" alt="" class="img-fluid">
+                      <figcaption class="ms-thumbnail-caption text-center">
+                        <div class="ms-thumbnail-caption-content">
+                          <h4 class="ms-thumbnail-caption-title mb-2">Lorem ipsum dolor</h4>
+                          <a href="javascript:void(0)" class="btn-circle btn-circle-raised btn-circle-xs mr-1 btn-circle-white color-danger"><i class="zmdi zmdi-favorite"></i></a>
+                          <a href="javascript:void(0)" class="btn-circle btn-circle-raised btn-circle-xs ml-1 mr-1 btn-circle-white color-warning"><i class="zmdi zmdi-star"></i></a>
+                          <a href="javascript:void(0)" class="btn-circle btn-circle-raised btn-circle-xs ml-1 btn-circle-white color-success"><i class="zmdi zmdi-share"></i></a>
+                        </div>
+                      </figcaption>
+                    </figure>
+                    <div class="card-body overflow-hidden text-center">
+                      <a href="javascript:void(0)" class="btn-circle btn-circle-royal btn-circle-raised btn-card-float right wow zoomInDown index-2"><i class="zmdi zmdi-star"></i></a>
+                      <h4 class="color-royal">Lorem ipsum dolor sit</h4>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam sed labore autem nesciunt ea veniam recusandae necessitatibus reprehenderit.</p>
+                      <a href="javascript:void(0)" class="btn btn-royal"><i class="zmdi zmdi-star"></i> Button</a>
+                      <a href="javascript:void(0)" class="btn btn-royal btn-raised"><i class="zmdi zmdi-globe"></i> Button</a>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div> <!-- container -->
+        
   </div>
 </template>
 

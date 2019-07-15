@@ -1,16 +1,16 @@
 <template>
-  <div id="app" class="container">
+  <div id="app" class="ms-site-container">
     
 
 
-    <header class="ms-header ms-header-primary">
+    <header class="ms-header ms-header-primary ms-site-container">
       <!--ms-header-primary-->
       <div class="container container-full">
         <div class="ms-title">
           <a href="index.html">
             <!-- <img src="assets/img/demo/logo-header.png" alt=""> -->
-            <span class="ms-logo animated zoomInDown animation-delay-5">M</span>
-            <h1 class="animated fadeInRight animation-delay-6">Material <span>Style</span></h1>
+            <span class="ms-logo animated zoomInDown animation-delay-5">I</span>
+            <h1 class="animated fadeInRight animation-delay-6">Indra's <span>Web</span></h1>
           </a>
         </div>
         <div class="header-right">
