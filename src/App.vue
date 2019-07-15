@@ -71,11 +71,11 @@
 
     <router-view :key="$route.path"/>
     
-    <footer class="ms-footer ms-footer-dark">
+    <!-- <footer class="ms-footer ms-footer-dark">
       <div class="container">
         <p>Copyright &copy; Material Style 2017</p>
       </div>
-    </footer>
+    </footer> -->
 
 
   </div>
