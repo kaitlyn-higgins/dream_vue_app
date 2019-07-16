@@ -14,18 +14,18 @@
       </div>
       <div>
         <label for="zip_code">Zip Code</label>
-        <input type="number" id="zip_code"  v-model="user.zip_code">
+        <input type="number" id="zip_code" v-model="user.zip_code">
       </div>
       <div>
         <label for="photo">Photo / Avatar</label>
-        <input type="file" id="photo"  v-on:change="setFile($event)" ref="fileInput">
+        <input type="file" id="photo" class="form-control"  v-on:change="setFile($event)" ref="fileInput">
       </div>
       {{photo}}
       <div>
         <label for="gender">Gender <small> optional</small></label><br>
-        <input type="radio" id="gender" name="gender" value="male" v-model="user.gender">  male
-        <input type="radio" id="gender" name="gender" value="female" v-model="user.gender">  female  
-        <input type="radio" id="gender" name="gender" value="non_specified" v-model="user.gender"> prefer not to specify
+        <input type="radio" name="gender" value="male" v-model="user.gender">  male
+        <input type="radio" name="gender" value="female" v-model="user.gender">  female  
+        <input type="radio" name="gender" value="non_specified" v-model="user.gender"> prefer not to specify
         <input type="radio">Other<input type="text" name="gender" value="" v-model="user.gender"/><br>
       </div>
 
@@ -94,7 +94,7 @@ export default {
   created: function() {
     axios.get("/api/users/" + this.$route.params.id).then(response => {
       this.user = response.data;
-      console.log(this.user);
+      // console.log(this.user);
     });
   },
   methods: {
@@ -108,7 +108,7 @@ export default {
       formData.append("username", this.user.username);
       formData.append("email", this.user.email);
       formData.append("zip_code", this.user.zip_code);
-      formData.append("photo", this.user.photo);
+      formData.append("photo", this.photo);
       formData.append("gender", this.user.gender);
       formData.append("password", this.user.password);
       formData.append("password_confirmation", this.user.password_confirmation);
@@ -123,7 +123,9 @@ export default {
       // };
       axios.patch("/api/users/" + this.user.id, formData).then(response => {
         console.log("success", response.data);
-        this.$router.push("/users/" + response.data.id ); //change this to dreams show page once made
+        console.log(response.data);
+        // console.log(this.user.id);
+        this.$router.push("/users/" + this.user.id ); //change this to dreams show page once made
       }).catch(error => {
         this.errors = error.response.data.errors;
         console.log(error.response.data.errors);

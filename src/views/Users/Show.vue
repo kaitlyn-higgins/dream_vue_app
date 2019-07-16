@@ -25,6 +25,10 @@
     </div>
 
 
+<!-- photo of user -->
+    <div><img v-bind:src="user.photo" alt=""></div>
+
+
     <!-- filter search bar -->
 
     <div>
