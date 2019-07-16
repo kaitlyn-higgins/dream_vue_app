@@ -85,26 +85,6 @@
       <div class="ms-site-container"> 
 
 
-
-        <!-- current user options / views -->
-
-            <!-- <div v-if="isCurrentUser()">
-              <h2>Welcome back, {{ user.username }}</h2>
-
-              <button><router-link to="/dreams/new">Enter a new dream</router-link></button>
-             
-              <button> <router-link v-bind:to="'/users/' + user.id + '/edit'">Edit Account Info</router-link></button>
-            </div> -->
-
-
-        <!-- dream strand text -->
-
-            <!-- <div>
-              <h2 v-if="isCurrentUser()">Your dream strand</h2>
-              <h2 v-else>{{user.username}}'s dream strand</h2>
-
-            </div> -->
-
         <div class="ms-hero-page ms-hero-img-coffee ms-hero-bg-success mb-6">
           <div class="container">
             <div class="text-center">
@@ -126,56 +106,73 @@
 
 
 
-
-
         <div class="container">
           <div class="row">
-            <div class="col-lg-8">
-              <article class="card wow fadeInLeft animation-delay-5 mb-4">
-                <div class="card-body overflow-hidden overflow-hidden">
-                  <div class="row">
-                    <div class="col-xl-6">
-                      <img src="assets/img/demo/post4.jpg" alt="" class="img-fluid mb-4">
-                    </div>
-                    <div class="col-xl-6">
-                      <h3 class="no-mt"><a href="javascript:void(0)">Earum delectus libero ipsa temporibus in minus</a></h3>
-                      <p class="mb-4">Lorem ipsum dolor sit amet, consectetur alter adipisicing elit. Facilis, natuse inse voluptates officia repudianda beatae magni es repudiandae beatae magni magnam autem natuse inse on voluptates elit sit molestias.</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-8">
-                      <img src="assets/img/demo/avatar50.jpg" alt="..." class="rounded-circle mr-1"> by <a href="javascript:void(0)">Victoria</a> in <a href="javascript:void(0)" class="ms-tag ms-tag-info">Design</a>
-                      <span class="ml-1 d-none d-sm-inline"><i class="zmdi zmdi-time mr-05 color-info"></i> <span class="color-medium-dark">April 15, 2015</span></span>
-                    </div>
-                    <div class="col-lg-4 text-right">
-                      <a href="javascript:void(0)" class="btn btn-primary btn-raised btn-block animate-icon">Read More <i class="ml-1 no-mr zmdi zmdi-long-arrow-right"></i></a>
-                    </div>
-                  </div>
-                </div>
-              </article>
+            <div v-for="dream in orderBy(filterBy(user.dreams, dreamFilter, 'title', 'content', 'tags', 'themes'), sortAttribute, sortAscending)" class="col-lg-8">
+
+
+
+
+
+
+
+
+<!-- cards -->
               <article class="card wow fadeInLeft animation-delay-5 mb-4">
                 <div class="card-body overflow-hidden">
                   <div class="row">
                     <div class="col-lg-6">
-                      <img src="assets/img/demo/post5.jpg" alt="" class="img-fluid mb-4">
+                      <img v-bind:src="dream.image_url" alt="" class="img-fluid mb-4">
                     </div>
                     <div class="col-lg-6">
-                      <h3 class="no-mt"><a href="javascript:void(0)">Earum delectus libero ipsa temporibus in minus</a></h3>
-                      <p class="mb-4">Lorem ipsum dolor sit amet, consectetur alter adipisicing elit. Facilis, natuse inse voluptates officia repudianda beatae magni es repudiandae beatae magni magnam autem natuse inse on voluptates elit sit molestias.</p>
+                      <h3 class="no-mt title"><router-link v-bind:to="'/dreams/' + dream.id">{{ dream.title }}</router-link></h3>
+
+
+                      <p class="mb-4 tag-name">
+                        <span v-for="tag in filterBy(dream.tags, tagFilter, 'name')" class="ms-tag ms-tag-light color-primary"><router-link v-bind:to="'/tags/' + tag.id">{{ tag.name }}</router-link></span>
+                      </p>
                     </div>
                   </div>
+
+
+
                   <div class="row">
+
                     <div class="col-lg-8">
-                      <img src="assets/img/demo/avatar50.jpg" alt="..." class="rounded-circle mr-1"> by <a href="javascript:void(0)">Victoria</a> in <a href="javascript:void(0)" class="ms-tag ms-tag-warning">Graphics</a>
-                      <span class="ml-1 d-none d-sm-inline"><i class="zmdi zmdi-time mr-05 color-info"></i> <span class="color-medium-dark">January 27, 2016</span></span>
+
+
+
+                      <p class="mb-4 theme-name">
+                        <span v-for="theme in filterBy(dream.themes, themeFilter, 'name')">
+                          <a v-if="theme.name === 'Lucid'" class="ms-tag ms-tag-success">{{ theme.name }}</a>
+
+                          <a v-if="theme.name === 'Nightmare'" class="ms-tag ms-tag-dark">{{ theme.name }}</a>
+
+                          <a v-if="theme.name === 'Memory'" cclass="ms-tag ms-tag-primary">{{ theme.name }}</a>
+
+                          <a v-if="theme.name === 'Adventure'" class="ms-tag ms-tag-danger">{{ theme.name }}</a>
+
+                          <a v-if="theme.name === 'Recurring'" class="ms-tag ms-tag-info">{{ theme.name }}</a>
+
+                          <a v-if="theme.name === 'Healing'" class="ms-tag ms-tag-light">{{ theme.name }}</a>
+
+                          <a v-if="theme.name === 'inspiration'" class="ms-tag ms-tag-warning">{{ theme.name }}</a>
+
+                        </span>
+                      </p>
+
+
+                      <span class="ml-1 d-none d-sm-inline"><i class="zmdi zmdi-time mr-05 color-info date"></i> <span class="color-medium-dark">Posted / updated: {{ formattedDate(dream.updated_at) }}</span></span>
                     </div>
                     <div class="col-lg-4 text-right">
-                      <a href="javascript:void(0)" class="btn btn-primary btn-raised btn-block animate-icon">Read More <i class="ml-1 no-mr zmdi zmdi-long-arrow-right"></i></a>
+                      <router-link v-bind:to="'/dreams/' + dream.id" class="btn btn-primary btn-raised btn-block animate-icon">Read More <i class="ml-1 no-mr zmdi zmdi-long-arrow-right"></i></router-link>
                     </div>
                   </div>
                 </div>
               </article>
-              <article class="card wow fadeInLeft animation-delay-5 mb-4">
+
+
+              <!-- <article class="card wow fadeInLeft animation-delay-5 mb-4">
                 <div class="card-body overflow-hidden">
                   <div class="row">
                     <div class="col-lg-6">
@@ -197,6 +194,7 @@
                   </div>
                 </div>
               </article>
+
               <article class="card wow fadeInLeft animation-delay-5 mb-4">
                 <div class="card-body overflow-hidden">
                   <div class="row">
@@ -240,7 +238,9 @@
                     </div>
                   </div>
                 </div>
-              </article>
+              </article> -->
+
+      <!-- pages buttons at bottom -->
               <nav aria-label="Page navigation">
                 <ul class="pagination pagination-plain">
                   <li class="page-item">
@@ -260,22 +260,31 @@
                 </ul>
               </nav>
             </div>
+
+
+    <!-- column of stuff-->
             <div class="col-lg-4">
+
+      <!-- photo -->   
               <div class="card animated fadeInUp animation-delay-7">
                 <div class="ms-hero-bg-info ms-hero-img-mountain">
-                  <h3 class="color-white index-1 text-center no-m pt-4">Victoria Smith</h3>
-                  <div class="color-medium index-1 text-center np-m">@vic_smith</div>
-                  <img src="assets/img/demo/avatar1.jpg" alt="..." class="img-avatar-circle">
+                  <h3 class="color-white index-1 text-center no-m pt-4">{{user.username}}</h3>
+
+                  <img v-bind:src="user.photo" alt="" class="img-avatar-circle">
                 </div>
                 <div class="card-body overflow-hidden pt-4 text-center">
-                  <h3 class="color-primary">About me</h3>
+                  <!-- <h3 class="color-primary">About me</h3>
                   <p>Lorem ipsum dolor sit amet, consectetur alter adipisicing elit. Facilis, natuse inse voluptates officia repudiandae beatae magni es magnam autem molestias.</p>
                   <a href="javascript:void(0)" class="btn-circle btn-circle-raised btn-circle-xs mt-1 mr-1 no-mr-md btn-google"><i class="zmdi zmdi-google"></i></a>
                   <a href="javascript:void(0)" class="btn-circle btn-circle-raised btn-circle-xs mt-1 mr-1 no-mr-md btn-facebook"><i class="zmdi zmdi-facebook"></i></a>
                   <a href="javascript:void(0)" class="btn-circle btn-circle-raised btn-circle-xs mt-1 mr-1 no-mr-md btn-twitter"><i class="zmdi zmdi-twitter"></i></a>
-                  <a href="javascript:void(0)" class="btn-circle btn-circle-raised btn-circle-xs mt-1 mr-1 no-mr-md btn-instagram"><i class="zmdi zmdi-instagram"></i></a>
+                  <a href="javascript:void(0)" class="btn-circle btn-circle-raised btn-circle-xs mt-1 mr-1 no-mr-md btn-instagram"><i class="zmdi zmdi-instagram"></i></a> -->
                 </div>
               </div>
+
+
+
+    <!-- navigation -->
               <div class="card card-primary animated fadeInUp animation-delay-7">
                 <div class="card-header">
                   <h3 class="card-title"><i class="zmdi zmdi-apps"></i> Navigation</h3>
@@ -380,12 +389,15 @@
                   </div>
                 </div>
               </div>
+    <!--feature video  -->
               <div class="card card-success animated fadeInUp animation-delay-7">
                 <div class="card-header">
                   <h3 class="card-title"><i class="zmdi zmdi-play-circle-outline"></i> Feature Video</h3>
                 </div>
                 <div class="js-player" data-plyr-provider="vimeo" data-plyr-embed-id="94747106"></div>
               </div>
+
+     <!-- text widget -->
               <div class="card card-primary animated fadeInUp animation-delay-7">
                 <div class="card-header">
                   <h3 class="card-title"><i class="zmdi zmdi-widgets"></i> Text Widget</h3>
@@ -430,7 +442,9 @@ export default {
       dreamFilter: "",
       sortAttribute: "updated_at",
       sortAscending: 1,
-      themes: []
+      themes: [],
+      tagFilter: "",
+      themeFilter: ""
     };
   },
   created: function() {
