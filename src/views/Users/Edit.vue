@@ -17,6 +17,11 @@
         <input type="number" id="zip_code"  v-model="user.zip_code">
       </div>
       <div>
+        <label for="photo">Photo / Avatar</label>
+        <input type="file" id="photo"  v-on:change="setFile($event)" ref="fileInput">
+      </div>
+      {{photo}}
+      <div>
         <label for="gender">Gender <small> optional</small></label><br>
         <input type="radio" id="gender" name="gender" value="male" v-model="user.gender">  male
         <input type="radio" id="gender" name="gender" value="female" v-model="user.gender">  female  
@@ -82,7 +87,8 @@ export default {
   data: function() {
     return {
       user: {},
-      errors: []
+      errors: [],
+      photo: ""
     };
   },
   created: function() {
@@ -92,16 +98,30 @@ export default {
     });
   },
   methods: {
+    setFile: function(event) {
+      if (event.target.files.length > 0) {
+        this.photo = event.target.files[0];
+      }
+    },
     submit: function() {
-      var params = {
-        username: this.user.username,
-        email: this.user.email,
-        zip_code: this.user.zip_code,
-        gender: this.user.gender,
-        password: this.user.password,
-        password_confirmation: this.user.password_confirmation
-      };
-      axios.patch("/api/users/" + this.user.id, params).then(response => {
+      var formData = new FormData();
+      formData.append("username", this.user.username);
+      formData.append("email", this.user.email);
+      formData.append("zip_code", this.user.zip_code);
+      formData.append("photo", this.user.photo);
+      formData.append("gender", this.user.gender);
+      formData.append("password", this.user.password);
+      formData.append("password_confirmation", this.user.password_confirmation);
+      // var params = {
+      //   username: this.user.username,
+      //   email: this.user.email,
+      //   zip_code: this.user.zip_code,
+      //   photo: this.user.photo,
+      //   gender: this.user.gender,
+      //   password: this.user.password,
+      //   password_confirmation: this.user.password_confirmation
+      // };
+      axios.patch("/api/users/" + this.user.id, formData).then(response => {
         console.log("success", response.data);
         this.$router.push("/users/" + response.data.id ); //change this to dreams show page once made
       }).catch(error => {

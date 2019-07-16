@@ -72,6 +72,14 @@
                           <input type="text" id="ms-form-user-r" class="form-control" v-model="zip_code">
                         </div>
                       </div>
+                      <div class="form-group label-floating">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="zmdi zmdi-photo"></i></span>
+                          <label class="control-label" for="ms-form-photo-r">Photo / Avatar</label>
+                          <input type="file" id="ms-form-user-r" class="form-control" v-on:change="setFile($event)" ref="fileInput">
+                        </div>
+                      </div>
+                      {{photo}}
                       <div class="form-group">
                         <div class="input-group">
                           <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
@@ -405,22 +413,36 @@ export default {
       gender: "",
       password: "",
       passwordConfirmation: "",
-      errors: []
+      errors: [],
+      photo: ""
     };
   },
   methods: {
+    setFile: function(event) {
+      if (event.target.files.length > 0) {
+        this.photo = event.target.files[0];
+      }
+    },
     submit: function() {
-      var params = {
-        username: this.username,
-        email: this.email,
-        zip_code: this.zip_code,
-        gender: this.gender,
-        password: this.password,
-        password_confirmation: this.passwordConfirmation
-      };
+      var formData = new FormData();
+      formData.append("username", this.username);
+      formData.append("email", this.email);
+      formData.append("zip_code", this.zip_code);
+      formData.append("photo", this.photo);
+      formData.append("gender", this.gender);
+      formData.append("password", this.password);
+      formData.append("password_confirmation", this.passwordConfirmation);
+      // var params = {
+      //   username: this.username,
+      //   email: this.email,
+      //   zip_code: this.zip_code,
+      //   image: this.image,
+      //   gender: this.gender,
+      //   password: this.password,
+      //   password_confirmation: this.passwordConfirmation
+      // };
       axios
-        .post("/api/users", params)
-        .then(response => {
+        .post("/api/users", formData).then(response => {
           this.$router.push("/login");
         })
         .catch(error => {
