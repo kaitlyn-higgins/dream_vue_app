@@ -2,32 +2,84 @@
   <div class="tags-index">
 
 
-    <h1>Tags Index</h1>
+    <!-- <h1>Tags Index</h1> -->
 
     <!-- filter search bar -->
-    <div>
+    <!-- <div>
       <label for="tag-filter">Search Tags</label>
       <input type="text" placeholder="Enter search term" v-model="tagFilter" list="tags">
-    </div>
+    </div> -->
 
 
     <!-- autocompletion -->
-    <datalist id="tags">
+    <!-- <datalist id="tags">
       <option v-for="tag in tags">{{ tag.name }}</option>
-    </datalist>
+    </datalist> -->
 
 
-    <div id="container"></div>
-    <div id='map'></div>
+    <!-- <div id="container"></div> -->
 
 
     <!-- tag list with filter enabled -->
-    <div v-for="tag in filterBy(tags, tagFilter, 'name')">
-    <!-- <div v-for="tag in tags"> -->
+    <!-- <div v-for="tag in filterBy(tags, tagFilter, 'name')">
+    
       <h2 class="name"><router-link v-bind:to="'/tags/' + tag.id">{{ tag.name }}</router-link></h2>
+    </div> -->
 
-       
-    </div>
+
+     <!--  <div class="ms-site-container"> -->
+        <div class="intro-full ms-hero-img-keyboard ms-hero-bg-primary color-white" id="home">
+          <div class="intro-full-content index-1">
+            <div class="container">
+              <div class="text-center mb-4">
+                <h2 class="animated zoomInRight animation-delay-7">Most Popular Dream Tags & Themes</h2>
+                <div id="container" class="animated rollIn animation-delay-5"></div>
+                
+                <br>
+              </div>
+              <div class="text-center mb-2">
+                <a data-scroll href="#timeline" class="btn-circle btn-circle-raised btn-circle-white animated fadeInUp animation-delay-20"><i class="zmdi zmdi-long-arrow-down"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container container-full pt-6">
+
+
+          <div class="card card-primary-inverse mt-4 wow fadeInUp" id="skills">
+            <div class="card-body card-body-big">
+ 
+
+              <h3 class="text-center fw-500 mb-4">All Strands</h3>
+
+              <form class="mw-500 center-block animated fadeInUp">
+                <input type="text" placeholder="Search for strands" v-model="tagFilter" class="form-control color-white">
+                <button type="button" class="btn btn-raised btn-royal btn-block"><i class="zmdi zmdi-search"></i> Search</button>
+              </form>
+
+              <div class="text-center center-block mw-200">
+                <span v-for="tag in filterBy(tags, tagFilter, 'name')" class="ms-tag ms-tag-light color-primary"><router-link v-bind:to="'/tags/' + tag.id">{{ tag.name }}</router-link></span>
+              </div>
+
+              <h4 class="text-center mt-10 mb-2">Click to see corresponding dreams</h4>
+            </div>
+          </div>
+
+
+        </div> <!-- container -->
+        <div class="btn-back-top">
+          <a href="#" data-scroll id="back-top" class="btn-circle btn-circle-primary btn-circle-sm btn-circle-raised "><i class="zmdi zmdi-long-arrow-up"></i></a>
+        </div>
+        <div class="bg-light index-1 intro-full-next pt-6">
+
+          <div class="btn-back-top">
+            <a href="#" data-scroll id="back-top" class="btn-circle btn-circle-primary btn-circle-sm btn-circle-raised "><i class="zmdi zmdi-long-arrow-up"></i></a>
+          </div>
+        </div>
+      <!-- </div>  --><!-- ms-site-container -->
+      
+
+
   </div>
 </template>
 
@@ -37,20 +89,7 @@
     max-width: 800px;
     margin: 0 auto;
   }
-  #map {top:0; bottom:0; width:100%; height:700px; }
-  #marker {
-  background-image: url('https://docs.mapbox.com/mapbox-gl-js/assets/washington-monument.jpg');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-  }
-   
-  .mapboxgl-popup {
-  max-width: 400px;
-  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  }
+
 </style>
 
 <script>
@@ -79,10 +118,11 @@ export default {
       Highcharts.chart('container', {
         chart: {
           type: 'packedbubble',
-          height: '100%'
+          height: '100%',
+          backgroundColor: 'transparent'
         },
         title: {
-          text: 'Most popular dream tags & themes'
+          text: ''
         },
         tooltip: {
           useHTML: true,
@@ -107,9 +147,9 @@ export default {
                 value: 0
               },
               style: {
-                color: 'black',
+                color: 'white',
                 textOutline: 'none',
-                fontWeight: 'normal'
+                fontWeight: 'heavy'
               }
             }
           },
@@ -139,6 +179,7 @@ export default {
       
     });
   },
+
 };
 
 </script>
