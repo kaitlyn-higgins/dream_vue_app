@@ -158,7 +158,8 @@
                       <h3 class="color-primary">Description</h3>
                       <p>{{ dream.content }}</p>
                       
-                        <p class="text-center"><router-link v-bind:to="'/dreams/' + dream.id + '/edit'" class="btn btn-raised btn-primary">Edit Dream</router-link></p>
+                        <!-- <p class="text-center"><router-link v-bind:to="'/dreams/' + dream.id + '/edit'" class="btn btn-raised btn-primary">Edit Description</router-link></p> -->
+                        <button type="button" data-toggle="modal" data-target="#descriptionModal" class="btn btn-raised btn-primary btn-block">Edit Description</button>
                       
                     </div>
                   </div>
@@ -197,10 +198,60 @@
 
 
 
+<!-- button for modal  -->
+         <!--  <button type="button" data-toggle="modal" data-target="#descriptionModal" class="btn btn-raised btn-primary btn-block">Delete Account</button> -->
 
 
 
-    
+          <!-- Modal for description-->
+          <div class="modal modal-warning" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel">
+              <div class="modal-dialog animated zoomIn animated-3x" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h3 class="modal-title color-primary" id="myModalLabel">Modify Dream Description</h3>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="zmdi zmdi-close"></i></span></button>
+                      </div>
+                      <div class="modal-body">
+                          
+
+                        <form v-on:submit.prevent="submit()">
+           
+
+
+
+                          <div>
+                            <label for="dreamTitle">Title</label>
+                            <input type="text" id="dreamTitle" placeholder="Talented Dinosaur" v-model="dream.title">
+                          </div>
+                          <div>
+                            <label for="dreamContent">Content</label>
+                            <input type="text" id="dreamContent" placeholder="A volcano erupted, and with it came a t-rex wearing blazing gold skis, skiing down the lava. " v-model="dream.content">
+                          </div>
+            
+
+                          <button type="submit" class="btn  btn-primary">Save Dream</button>
+                          
+                        </form> -->
+
+
+
+
+
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                          <!-- <button type="button" class="btn  btn-primary">Save changes</button> -->
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+
+
+
+
+
+
 
 
   </div>
@@ -208,6 +259,8 @@
 
 <script>
 import axios from "axios";
+import moment from 'moment';
+
 
 export default {
   data: function() {
@@ -257,7 +310,10 @@ export default {
         console.log(error.response.data.errors);
         // this.status = error.response.status;
       });
-    }
+    },
+    formattedDate: function(date) {
+      return moment(date).format('LLLL');
+    },
   }
 };
 </script>
