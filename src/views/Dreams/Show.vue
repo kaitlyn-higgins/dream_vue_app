@@ -57,8 +57,8 @@
                     <div class="carousel-item active">
                       <img class="d-block img-fluid" v-bind:src="dream.image_url" alt="">
                       <div class="carousel-caption">
-                        <h3>Lorem ipsum dolor</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <h3>{{dream.title}}</h3>
+                        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
                       </div>
                     </div>
                     <!-- <div class="carousel-item">
@@ -84,8 +84,8 @@
 
 
                   <!-- Controls -->
-                  <a href="#carousel-example-generic" class="btn-circle btn-circle-xs btn-circle-raised btn-circle-primary left carousel-control-prev" role="button" data-slide="prev"><i class="zmdi zmdi-chevron-left"></i></a>
-                  <a href="#carousel-example-generic" class="btn-circle btn-circle-xs btn-circle-raised btn-circle-primary right carousel-control-next" role="button" data-slide="next"><i class="zmdi zmdi-chevron-right"></i></a>
+                  <!-- <a href="#carousel-example-generic" class="btn-circle btn-circle-xs btn-circle-raised btn-circle-primary left carousel-control-prev" role="button" data-slide="prev"><i class="zmdi zmdi-chevron-left"></i></a>
+                  <a href="#carousel-example-generic" class="btn-circle btn-circle-xs btn-circle-raised btn-circle-primary right carousel-control-next" role="button" data-slide="next"><i class="zmdi zmdi-chevron-right"></i></a> -->
                 </div>
               </div>
               <div class="card-footer">
@@ -116,7 +116,9 @@
                   </ul>
                   <h3 class="color-primary">Description</h3>
                   <p>{{ dream.content }}</p>
-                  <p class="text-center"><router-link v-bind:to="'/dreams/' + dream.id + '/edit'" class="btn btn-raised btn-primary">Edit Dream</router-link></p>
+                  
+                    <p class="text-center"><router-link v-bind:to="'/dreams/' + dream.id + '/edit'" class="btn btn-raised btn-primary">Edit Dream</router-link></p>
+                  
                 </div>
               </div>
             </div>
@@ -169,7 +171,8 @@ export default {
       dream: {},
       tags: [],
       user: {},
-      errors: []
+      errors: [],
+      current_user: [],
     };
   },
   created: function() {
@@ -179,11 +182,29 @@ export default {
     }).catch(error => {
       this.errors = error.response.data.errors;
     });
+    axios.get("/api/users/" + this.$route.params.id).then(response => {
+      this.user = response.data;
+      console.log(this.user);
+      // console.log(this.user.dreams.tags);
+    }).catch(error => {
+      this.errors = error.response.data.errors;
+    });
   },
   methods: {
     formattedDate: function(date) {
       return moment(date).format('LLLL');
     }
-  }
+  },
+  isCurrentUser: function() {
+    console.log(typeof localStorage.getItem("user_id"));
+    console.log(typeof this.user.id);
+    if (localStorage.getItem("user_id") == this.user.id) {
+      console.log("true");
+      return true;
+    } else {
+      console.log("false");
+      return false;
+    }
+  },
 };
 </script>
