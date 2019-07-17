@@ -72,14 +72,26 @@
                           <input type="text" id="ms-form-user-r" class="form-control" v-model="zip_code">
                         </div>
                       </div>
+
                       <div class="form-group label-floating">
+                        <label for="ms-form-photo-r">Photo / Avatar</label>
+                        <input type="file" id="ms-form-user-r" class="form-control" v-on:change="setFile($event)" ref="fileInput">
                         <div class="input-group">
-                          <span class="input-group-addon"><i class="zmdi zmdi-photo"></i></span>
-                          <label class="control-label" for="ms-form-photo-r">Photo / Avatar</label>
-                          <input type="file" id="ms-form-user-r" class="form-control" v-on:change="setFile($event)" ref="fileInput">
+                          <input type="text" readonly="=" class="form-control" placeholder="Choose a file to upload">
+                          <span class="input-group-btn input-group-sm"><i class="zmdi zmdi-photo"></i>
+
+                            <button type="button" class="btn btn-fab btn-fab-mini">
+                              <i class="material-icons">attach_file</i>
+                            </button>
+
+                          </span>
+                          
+                          
                         </div>
                       </div>
                       {{photo}}
+
+
                       <div class="form-group">
                         <div class="input-group">
                           <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
