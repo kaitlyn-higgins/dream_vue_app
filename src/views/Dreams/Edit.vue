@@ -77,6 +77,7 @@
               <span v-for="tag in dream.tags">
                 <router-link v-bind:to="'/tags/' + tag.id" class=" btn btn-warning btn-xlg btn-raised animated flipInX animation-delay-16"> {{ tag.name }}</router-link>
               </span>
+              <button type="button" data-toggle="modal" data-target="#tagsModal" class="btn btn-raised btn-success btn-block">Edit Tags</button>
             </div>
 
 
@@ -132,6 +133,7 @@
                   <div class="card-footer">
                     <h3 v-for="theme in dream.themes" href="#" class="btn btn-royal">{{theme.name}}</h3>
                   </div>
+                  <button type="button" data-toggle="modal" data-target="#themePhotoModal" class="btn btn-raised btn-primary btn-block">Edit Themes & Photo</button>
                 </div>
       
                
@@ -203,7 +205,7 @@
 
 
 
-          <!-- Modal for description-->
+<!-- Description & Title Modal-->
           <div class="modal modal-warning" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel">
               <div class="modal-dialog animated zoomIn animated-3x" role="document">
                   <div class="modal-content">
@@ -213,33 +215,24 @@
                       </div>
                       <div class="modal-body">
                           
-
                         <form v-on:submit.prevent="submit()">
-           
+                          <fieldset>
+                            <div class="form-group has-success">
+                              <label for="dreamTitle">Title</label>
+                              <input type="text" id="dreamTitle" class="form-control" placeholder="Talented Dinosaur" v-model="dream.title">
+                            </div>
+                            <div class="form-group has-success">
+                              <label for="dreamContent">Content</label>
+                              <input type="textarea" id="dreamContent" class="form-control" v-model="dream.content">
+                            </div>
 
-
-
-                          <div>
-                            <label for="dreamTitle">Title</label>
-                            <input type="text" id="dreamTitle" placeholder="Talented Dinosaur" v-model="dream.title">
-                          </div>
-                          <div>
-                            <label for="dreamContent">Content</label>
-                            <input type="text" id="dreamContent" placeholder="A volcano erupted, and with it came a t-rex wearing blazing gold skis, skiing down the lava. " v-model="dream.content">
-                          </div>
-            
-
-                          <button type="submit" class="btn  btn-primary">Save Dream</button>
-                          
-                        </form> -->
-
-
-
-
+                            <button type="submit" class="btn  btn-primary">Save Dream</button>
+                          </fieldset>
+                        </form>
 
                       </div>
                       <div class="modal-footer">
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Return to Edit Page</button>
                           <!-- <button type="button" class="btn  btn-primary">Save changes</button> -->
                       </div>
                   </div>
@@ -248,10 +241,98 @@
 
 
 
+<!-- tags modal -->
+          <div class="modal modal-warning" id="tagsModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel">
+              <div class="modal-dialog animated zoomIn animated-3x" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h3 class="modal-title color-primary" id="myModalLabel">Modify Strands</h3>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="zmdi zmdi-close"></i></span></button>
+                      </div>
+                      <div class="modal-body">
+                          
+                        <form v-on:submit.prevent="submit()">
+                          <fieldset>
+                            <div class="form-group has-success">
+                              <label for="dreamTags">Strands</label>
+                              <div v-for="tag in dream.tags">
+                                <input type="text" class="form-control" v-model="tag.name">
+                              </div>
+                             
+                            </div>
+                                {{dream.tags}}
+                                {{dream.tags.length}}
+                            <button type="submit" class="btn  btn-primary" v-on:click="tagsChanged = true">Save Dream</button>
+                          </fieldset>
+                        </form>
+                        {{tagsChanged}}
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Return to Edit Page</button>
+                          <!-- <button type="button" class="btn  btn-primary">Save changes</button> -->
+                      </div>
+                  </div>
+              </div>
+          </div>
 
 
+<!-- photo & themes modal -->
+          <div class="modal modal-warning" id="themePhotoModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel">
+              <div class="modal-dialog animated zoomIn animated-3x" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h3 class="modal-title color-primary" id="myModalLabel">Modify Strands</h3>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="zmdi zmdi-close"></i></span></button>
+                      </div>
+                      <div class="modal-body">
+                          
+                        <form v-on:submit.prevent="submit()">
+                          <fieldset>
+                            <div class="form-group has-success">
+                              <label for="themes">Dream Themes</label>
+                              <div v-for="theme in themes">
+                                
+                                <input type="checkbox" class="form-control" v-model="theme.id"> {{theme.name}}
+                              
+                                
+                              </div>
+                             
+                            </div>
+                                {{dream.themes}}
+                                {{dream.theme}}
+                               <!--  {{theme.name}}
+                                {{theme.id}} -->
+                            <button type="submit" class="btn  btn-primary" v-on:click="themesChanged = true">Save Dream</button>
+                          </fieldset>
+                        </form>
+                        {{tagsChanged}}
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Return to Edit Page</button>
+                          <!-- <button type="button" class="btn  btn-primary">Save changes</button> -->
+                      </div>
+                  </div>
+              </div>
+          </div>
 
 
+<!--           <div class="form-group col-md-12">
+            <label for="themes">Dream Themes</label><br>
+
+            <span v-for="theme in themes">
+              <input type="checkbox" :value="theme.id" v-model="themeIds"> {{ theme.name }}
+            </span>
+            <br>
+            <span>theme Ids: {{ themeIds }}</span>
+
+          </div>
+
+
+          <div>
+            <label for="dreamImageUrl">Image Url</label>
+            <input type="text" id="dreamImageUrl" placeholder="https://i.ytimg.com/vi/1vMBqDt0s0I/hqdefault.jpg" v-model="dream.image_url">
+          </div>
+ -->
 
 
   </div>
@@ -265,13 +346,15 @@ import moment from 'moment';
 export default {
   data: function() {
     return {
-      tag_names: [],
       dream: {},
       errors: [],
       status: "", 
       shownInputs: 0,
       themes: [],
       themeIds: [],
+      tagsChanged: false,
+      themesChanged: false,
+      theme: {}
       // dreamThemeIds: [this.themes]
     };
   },
@@ -279,10 +362,10 @@ export default {
     axios.get("/api/dreams/" + this.$route.params.id).then(response => {
       this.dream = response.data;
       this.dream.themes = response.data.themes;
-      console.log(this.dream);
-      console.log(this.dream.themes);
+      // console.log(this.dream);
+      // console.log(this.dream.themes);
       this.themeIds = this.dream.themes.map(theme => theme.id);
-      console.log(this.themeIds);
+      // console.log(this.themeIds);
 
     });
     axios.get("/api/themes").then(response => {
@@ -295,15 +378,30 @@ export default {
     submit: function() {
       var params = {
         // tag_names: this.dream.tag_names,
-        tag_names: this.tag_names,
         title: this.dream.title,
         content: this.dream.content,
         image_url: this.dream.image_url,
         is_public: this.dream.is_public,
-        theme_ids: this.themeIds
+        // theme_ids: this.themeIds
       };
+
+      console.log(this.tagsChanged);
+      if (this.tagsChanged) {
+        var tagNames = this.dream.tags.map(tag => tag.name);
+        params.tag_names = tagNames;
+      }
+
+      if (this.themesChanged) {
+        var dreamThemeIds = this.dream.themes.map(theme => theme.id);
+        console.log(this.dream.themes);
+        params.theme_ids = dreamThemeIds;
+      }
+
       axios.patch("/api/dreams/" + this.dream.id, params).then(response => {
         console.log("success", response.data);
+        $("#tagsModal").modal("hide");
+        $("#descriptionModal").modal("hide");
+        $("#themePhotoModal").modal("hide");
         this.$router.push("/dreams/" + response.data.id ); //change this to dreams show page once made
       }).catch(error => {
         this.errors = error.response.data.errors;

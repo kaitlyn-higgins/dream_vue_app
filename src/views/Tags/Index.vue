@@ -33,7 +33,7 @@
             <div class="container">
               <div class="text-center mb-4">
                 <h2 class="animated zoomInRight animation-delay-7">Most Popular Dream Tags & Themes</h2>
-                <div id="container" class="animated rollIn animation-delay-5"></div>
+                <div id="highchart" class="animated rollIn animation-delay-5"></div>
                 
                 <br>
               </div>
@@ -84,10 +84,14 @@
 </template>
 
 <style>
-  #container {
+  #highchart {
     min-width: 320px;
     max-width: 800px;
     margin: 0 auto;
+  }
+
+  #home {
+    height: 1100px;
   }
 
 </style>
@@ -115,7 +119,7 @@ export default {
       // console.log(this.tags);
       console.log(this.map_tags);
       // console.log(this.tags);
-      Highcharts.chart('container', {
+      Highcharts.chart('highchart', {
         chart: {
           type: 'packedbubble',
           height: '100%',
@@ -176,6 +180,7 @@ export default {
           data: this.formatted_theme_series
         }]
       });
+     
       
     });
   },
