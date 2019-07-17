@@ -117,7 +117,7 @@
                   <h3 class="color-primary">Description</h3>
                   <p>{{ dream.content }}</p>
                   
-                    <p class="text-center"><router-link v-bind:to="'/dreams/' + dream.id + '/edit'" class="btn btn-raised btn-primary">Edit Dream</router-link></p>
+                    <p v-if="isCurrentUser()" class="text-center"><router-link v-bind:to="'/dreams/' + dream.id + '/edit'" class="btn btn-raised btn-primary">Edit Dream</router-link></p>
                   
                 </div>
               </div>
@@ -170,7 +170,7 @@ export default {
     return {
       dream: {},
       tags: [],
-      user: {},
+      user: [],
       errors: [],
       current_user: [],
     };
@@ -193,18 +193,18 @@ export default {
   methods: {
     formattedDate: function(date) {
       return moment(date).format('LLLL');
-    }
-  },
-  isCurrentUser: function() {
-    console.log(typeof localStorage.getItem("user_id"));
-    console.log(typeof this.user.id);
-    if (localStorage.getItem("user_id") == this.user.id) {
-      console.log("true");
-      return true;
-    } else {
-      console.log("false");
-      return false;
-    }
+    },
+    isCurrentUser: function() {
+      console.log(typeof localStorage.getItem("user_id"));
+      console.log(typeof this.user.id);
+      if (localStorage.getItem("user_id") == this.dream.user.id) {
+        console.log("true");
+        return true;
+      } else {
+        console.log("false");
+        return false;
+      }
+    },
   },
 };
 </script>
