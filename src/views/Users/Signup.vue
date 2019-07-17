@@ -4,7 +4,7 @@
 
       <div class="bg-full-page ms-hero-bg-dark ms-hero-img-airplane back-fixed">
         <div class="mw-500 absolute-center">
-          <div class="card color-dark shadow-6dp animated fadeIn animation-delay-7">
+          <div class="card color-dark shadow-6dp animated zoomInDown animation-delay-7">
             <div class="ms-hero-bg-primary ms-hero-img-mountain">
               <h2 class="text-center no-m pt-4 pb-4 color-white index-1">Login Form</h2>
             </div>
@@ -17,33 +17,29 @@
 
 
                 <div role="tabpanel" class="tab-pane fade active show" id="ms-login-tab">
-                  <form>
+                  <form v-on:submit.prevent="loginSubmit()">
                     <fieldset>
                       <div class="form-group label-floating">
                         <div class="input-group">
                           <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
-                          <label class="control-label" for="ms-form-user">Username</label>
-                          <input type="text" id="ms-form-user" class="form-control">
+                          <label class="control-label" for="ms-form-user">Email</label>
+                          <input type="email" id="ms-form-user" class="form-control" v-model="email">
                         </div>
                       </div>
                       <div class="form-group label-floating">
                         <div class="input-group">
                           <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
                           <label class="control-label" for="ms-form-pass">Password</label>
-                          <input type="password" id="ms-form-pass" class="form-control">
+                          <input type="password" id="ms-form-pass" class="form-control" v-model="password">
                         </div>
                       </div>
                       <div class="row mt-2">
                         <div class="col-5">
                           <div class="form-group mt-1">
-                            <div class="checkbox">
-                              <label>
-                                <input type="checkbox"> Remember </label>
-                            </div>
                           </div>
                         </div>
                         <div class="col-7">
-                          <button class="btn btn-raised btn-primary pull-right">Login</button>
+                          <button type="submit" value="Submit" class="btn btn-raised btn-primary pull-right">Login</button>
                         </div>
                       </div>
                     </fieldset>
@@ -53,7 +49,7 @@
 
 
                 <div role="tabpanel" class="tab-pane fade" id="ms-register-tab">
-                  <form v-on:submit.prevent="submit()">
+                  <form v-on:submit.prevent="registerSubmit()">
                     <fieldset>
                       <div class="form-group label-floating">
                         <div class="input-group">
@@ -426,7 +422,7 @@ export default {
         this.photo = event.target.files[0];
       }
     },
-    submit: function() {
+    registerSubmit: function() {
       var formData = new FormData();
       formData.append("username", this.username);
       formData.append("email", this.email);
@@ -449,6 +445,26 @@ export default {
       }).catch(error => {
         this.errors = error.response.data.errors;
         console.log(error.response.data.errors);
+      });
+    },
+    loginSubmit: function() {
+      var params = {
+        email: this.email,
+        password: this.password
+      };
+      axios.post("/api/sessions", params).then(response => {
+        axios.defaults.headers.common["Authorization"] =
+          "Bearer " + response.data.jwt;
+        localStorage.setItem("jwt", response.data.jwt);
+        localStorage.setItem("user_id", response.data.user_id);
+        localStorage.setItem("username", response.data.username);
+        // console.log(response.data);
+        // location.href = '/users/' + response.data.user_id;
+        this.$router.push("/users/" + response.data.user_id);
+      }).catch(error => {
+        this.errors = ["Invalid email or password."];
+        this.email = "";
+        this.password = "";
       });
     }
   }
