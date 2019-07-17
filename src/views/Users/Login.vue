@@ -93,23 +93,20 @@ export default {
         email: this.email,
         password: this.password
       };
-      axios
-        .post("/api/sessions", params)
-        .then(response => {
-          axios.defaults.headers.common["Authorization"] =
-            "Bearer " + response.data.jwt;
-          localStorage.setItem("jwt", response.data.jwt);
-          localStorage.setItem("user_id", response.data.user_id);
-          localStorage.setItem("username", response.data.username);
-          // console.log(response.data);
-          // location.href = '/users/' + response.data.user_id;
-          this.$router.push("/users/" + response.data.user_id);
-        })
-        .catch(error => {
-          this.errors = ["Invalid email or password."];
-          this.email = "";
-          this.password = "";
-        });
+      axios.post("/api/sessions", params).then(response => {
+        axios.defaults.headers.common["Authorization"] =
+          "Bearer " + response.data.jwt;
+        localStorage.setItem("jwt", response.data.jwt);
+        localStorage.setItem("user_id", response.data.user_id);
+        localStorage.setItem("username", response.data.username);
+        // console.log(response.data);
+        // location.href = '/users/' + response.data.user_id;
+        this.$router.push("/users/" + response.data.user_id);
+      }).catch(error => {
+        this.errors = ["Invalid email or password."];
+        this.email = "";
+        this.password = "";
+      });
     }
   }
 };

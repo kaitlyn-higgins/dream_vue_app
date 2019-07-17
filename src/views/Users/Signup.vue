@@ -8,13 +8,14 @@
             <div class="ms-hero-bg-primary ms-hero-img-mountain">
               <h2 class="text-center no-m pt-4 pb-4 color-white index-1">Login Form</h2>
             </div>
-            <ul class="nav nav-tabs nav-tabs-full nav-tabs-3 nav-tabs-transparent indicator-primary" role="tablist">
+            <ul class="nav nav-tabs nav-tabs-full nav-tabs-2 nav-tabs-transparent indicator-primary" role="tablist">
               <li class="nav-item" role="presentation"><a href="#ms-login-tab" aria-controls="ms-login-tab" role="tab" data-toggle="tab" class="nav-link withoutripple active"><i class="zmdi zmdi-account"></i> Login</a></li>
               <li class="nav-item" role="presentation"><a href="#ms-register-tab" aria-controls="ms-register-tab" role="tab" data-toggle="tab" class="nav-link withoutripple"><i class="zmdi zmdi-account-add"></i> Register</a></li>
-              <li class="nav-item" role="presentation"><a href="#ms-recovery-tab" aria-controls="ms-recovery-tab" role="tab" data-toggle="tab" class="nav-link withoutripple"><i class="zmdi zmdi-key"></i> Recovery</a></li>
             </ul>
             <div class="card-body">
               <div class="tab-content">
+
+
                 <div role="tabpanel" class="tab-pane fade active show" id="ms-login-tab">
                   <form>
                     <fieldset>
@@ -48,6 +49,9 @@
                     </fieldset>
                   </form>
                 </div>
+
+
+
                 <div role="tabpanel" class="tab-pane fade" id="ms-register-tab">
                   <form v-on:submit.prevent="submit()">
                     <fieldset>
@@ -110,14 +114,13 @@
                         </div>
                       </div>
                       <button type="submit" value="Submit" class="btn btn-raised btn-block btn-primary">Register Now</button>
-
-                      <ul>
-                        <li v-for="error in errors">{{ error }}</li>
-                      </ul>
                       
                     </fieldset>
                     <!-- <input type="submit" class="btn btn-primary" value="Submit"> -->
                   </form>
+                  <ul>
+                    <li v-for="error in errors">{{ error }}</li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -441,14 +444,12 @@ export default {
       //   password: this.password,
       //   password_confirmation: this.passwordConfirmation
       // };
-      axios
-        .post("/api/users", formData).then(response => {
-          this.$router.push("/login");
-        })
-        .catch(error => {
-          this.errors = error.response.data.errors;
-          console.log(error.response.data.errors);
-        });
+      axios.post("/api/users", formData).then(response => {
+        this.$router.push("/login");
+      }).catch(error => {
+        this.errors = error.response.data.errors;
+        console.log(error.response.data.errors);
+      });
     }
   }
 };
