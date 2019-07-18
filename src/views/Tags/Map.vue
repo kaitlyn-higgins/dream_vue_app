@@ -14,16 +14,9 @@
 </template>
 
 <style>
-  /*body { margin:0; padding:0; }*/
+
   #map {top:0; bottom:0; width:100%; height:700px; }
-  #marker {
-  background-image: url('https://docs.mapbox.com/mapbox-gl-js/assets/washington-monument.jpg');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-  }
+
    
   .mapboxgl-popup {
   max-width: 400px;
@@ -40,19 +33,18 @@ export default {
     return {
       errors: [],
       tags: [],
-      // monument: [-77.0353, 38.8895]
     };
   },
   created: function() {
     axios.get("/api/tags").then(response => {
-      this.map_tags = response.data.map_tags;
+      this.map_tags_list = response.data.map_tags_list;
       this.tags = response.data.tags;
       // this.map_lat = response.data.map_lat;
       // this.map_long = response.data.map_long;
       // console.log(this.map_lat[0]);
       // console.log(this.map_long[0]);
       // console.log(this.tags);
-      // console.log(this.map_tags);
+      // console.log(this.map_tags_list);
       // console.log(this.tags[0]);
 
       mapboxgl.accessToken = 'pk.eyJ1Ijoia2FpdGx5bi1oaWdnaW5zIiwiYSI6ImNqdzhnenY3ZTA0bG40OXFtYXU5Y3o3OW0ifQ.ui0g5SMebq8LOjzECdtxMA';
@@ -62,21 +54,7 @@ export default {
         center: [-88.72205, 41.95361], // starting position [lng, lat]
         zoom: 3.5 // starting zoom
       });
-      var monument = [-104.98291, 39.77986];
-
-      // create the popup
-      var popup = new mapboxgl.Popup({ offset: 25 })
-        .setText('Construction on the Washington Monument began in 1848.');
-       
-      // create DOM element for the marker
-      var el = document.createElement('div');
-      el.id = 'marker';
-       
-      // create the marker
-      new mapboxgl.Marker(el)
-        .setLngLat(monument)
-        .setPopup(popup) // sets a popup on this marker
-        .addTo(map);
+ 
       map.on('load', function() {
          
         // Add a layer showing the places.
@@ -87,7 +65,7 @@ export default {
             "type": "geojson",
             "data": {
               "type": "FeatureCollection",
-              "features": this.map_tags
+              "features": this.map_tags_list
             }
           },
           "layout": {
