@@ -80,9 +80,9 @@
 
 
       
-        <div class="ms-site-container">
+        <div class="ms-hero-page-override ms-hero-img-coffee ms-hero-bg-primary-dark">
           <!-- Modal -->
-          <div class="ms-hero-page-override ms-hero-img-airplane ms-bg-fixed ms-hero-bg-dark-light">
+          <div class="ms-hero-page-override ms-bg-fixed">
             <div class="container">
               <div class="text-center">
                 <h1 class="no-m ms-site-title color-white center-block ms-site-title-lg mt-2 animated zoomInDown animation-delay-5">Modify Account Info</h1>

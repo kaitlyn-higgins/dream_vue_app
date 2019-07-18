@@ -27,7 +27,7 @@
     </div> -->
 
 
-      <div class="ms-site-container">
+      <div class="ms-site-containerbg-full-page bg-primary-dark">
 <!-- bubble chart -->
         <div class="intro-full ms-hero-img-keyboard ms-hero-bg-primary color-white" id="home">
           <div class="intro-full-content index-1">
@@ -48,19 +48,22 @@
 
 
 <!-- mapbox map -->
-        <div id='map'></div>
-
+        <div>
+        <h2 class="animated zoomInRight animation-delay-7 text-center">Map of Users' Dream Themes</h2>
+        <h4 class="animated zoomInRight animation-delay-7 text-center">Scroll to zoom & hover to see tag names</h4>       
+          <div id='map'></div>
+        </div>
 
 
 <!-- all strands -->
         <div class="card card-primary-inverse mt-4 wow fadeInUp" id="skills">
           <div class="card-body card-body-big">
 
-
-            <h3 class="text-center fw-500 mb-4">All Strands</h3>
+           
+            <h2 class="animated zoomInRight animation-delay-7 text-center">All Strands</h2>
 
             <form class="mw-500 center-block animated fadeInUp">
-              <input type="text" placeholder="Search for strands" v-model="tagFilter" class="form-control color-white">
+              <input type="text" placeholder="Search for strands" v-model="tagFilter" class="form-control color-light">
               <button type="button" class="btn btn-raised btn-royal btn-block"><i class="zmdi zmdi-search"></i> Search</button>
             </form>
 

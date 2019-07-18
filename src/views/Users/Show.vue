@@ -82,7 +82,7 @@
 
 
     
-      <div class="ms-site-container"> 
+      <div class="ms-site-containerbg-full-page bg-primary-dark"> 
 
 
         <div class="ms-hero-page ms-hero-img-coffee ms-hero-bg-success mb-6">
@@ -125,7 +125,7 @@
 
 
 
-        <div class="container">
+        <div class="container ">
           <div class="row">
             <div  class="col-lg-8">
 
@@ -148,7 +148,7 @@
 
 
                       <p class="mb-4 tag-name">
-                        <span v-for="tag in filterBy(dream.tags, tagFilter, 'name')" class="ms-tag ms-tag-light color-primary"><router-link v-bind:to="'/tags/' + tag.id">{{ tag.name }}</router-link></span>
+                        <span v-for="tag in filterBy(dream.tags, tagFilter, 'name')" class="btn-lg ms-tag ms-tag-light color-primary"><router-link v-bind:to="'/tags/' + tag.id">{{ tag.name }}</router-link></span>
                       </p>
                     </div>
                   </div>
@@ -160,22 +160,21 @@
                     <div class="col-lg-8">
 
 
-
                       <p class="mb-4 theme-name">
                         <span v-for="theme in filterBy(dream.themes, themeFilter, 'name')">
-                          <a v-if="theme.name === 'Lucid'" class="ms-tag ms-tag-success">{{ theme.name }}</a>
+                          <a v-if="theme.name === 'Lucid'" class="btn btn-raised btn-success">{{ theme.name }}</a>
 
-                          <a v-if="theme.name === 'Nightmare'" class="ms-tag ms-tag-dark">{{ theme.name }}</a>
+                          <a v-if="theme.name === 'Nightmare'" class="btn btn-raised btn-dark">{{ theme.name }}</a>
 
-                          <a v-if="theme.name === 'Memory'" cclass="ms-tag ms-tag-primary">{{ theme.name }}</a>
+                          <a v-if="theme.name === 'Memory'" class="btn btn-raised btn-primary">{{ theme.name }}</a>
 
-                          <a v-if="theme.name === 'Adventure'" class="ms-tag ms-tag-danger">{{ theme.name }}</a>
+                          <a v-if="theme.name === 'Adventure'" class="btn btn-raised btn-danger">{{ theme.name }}</a>
 
-                          <a v-if="theme.name === 'Recurring'" class="ms-tag ms-tag-info">{{ theme.name }}</a>
+                          <a v-if="theme.name === 'Recurring'" class="btn btn-raised btn-info">{{ theme.name }}</a>
 
-                          <a v-if="theme.name === 'Healing'" class="ms-tag ms-tag-light">{{ theme.name }}</a>
+                          <a v-if="theme.name === 'Healing'" class="btn btn-raised btn-white">{{ theme.name }}</a>
 
-                          <a v-if="theme.name === 'inspiration'" class="ms-tag ms-tag-warning">{{ theme.name }}</a>
+                          <a v-if="theme.name === 'inspiration'" class="btn btn-raised btn-warning">{{ theme.name }}</a>
 
                         </span>
                       </p>
@@ -444,22 +443,22 @@
                 </div>
               </div>
     <!--feature video  -->
-              <div class="card card-success animated fadeInUp animation-delay-7">
+              <!-- <div class="card card-success animated fadeInUp animation-delay-7">
                 <div class="card-header">
                   <h3 class="card-title"><i class="zmdi zmdi-play-circle-outline"></i> Feature Video</h3>
                 </div>
                 <div class="js-player" data-plyr-provider="vimeo" data-plyr-embed-id="94747106"></div>
-              </div>
+              </div> -->
 
      <!-- text widget -->
-              <div class="card card-primary animated fadeInUp animation-delay-7">
+              <!-- <div class="card card-primary animated fadeInUp animation-delay-7">
                 <div class="card-header">
                   <h3 class="card-title"><i class="zmdi zmdi-widgets"></i> Text Widget</h3>
                 </div>
                 <div class="card-body overflow-hidden">
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat ipsam non eaque est architecto doloribus, labore nesciunt laudantium, ex id ea, cum facilis similique tenetur fugit nemo id minima possimus.</p>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div> <!-- container -->

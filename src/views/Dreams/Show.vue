@@ -27,14 +27,14 @@
 
 
 
-      <div class="ms-site-container">
+      <div class="ms-site-container ms-hero-bg-cyan ms-hero-img-leaf">
  
         <div class="ms-hero-page mb-6 ms-hero-bg-primary ms-hero-img-coffee">
           <h2 class="text-center no-m pt-4 pb-4 color-white index-1">{{ dream.title }}</h2>
 
           <div class="lead color-white index-1 text-center">
           <span v-for="tag in dream.tags">
-            <router-link v-bind:to="'/tags/' + tag.id" class=" btn btn-warning btn-xlg btn-raised animated flipInX animation-delay-16"> {{ tag.name }}</router-link>
+            <router-link v-bind:to="'/tags/' + tag.id" class=" btn btn-circle-primary btn-xlg btn-raised animated flipInX animation-delay-16"> {{ tag.name }}</router-link>
           </span>
         </div>
 
@@ -88,7 +88,7 @@
                   <a href="#carousel-example-generic" class="btn-circle btn-circle-xs btn-circle-raised btn-circle-primary right carousel-control-next" role="button" data-slide="next"><i class="zmdi zmdi-chevron-right"></i></a> -->
                 </div>
               </div>
-              <div class="card-footer">
+              <div class="card-footer card-royal">
                 <h3 v-for="theme in dream.themes" href="#" class="btn btn-royal">{{theme.name}}</h3>
               </div>
             </div>
@@ -123,35 +123,9 @@
               </div>
             </div>
           </div>
-          <h2 class="right-line mt-6">Related Works</h2>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="card">
-                <a href="javascript:void(0)">
-                  <img src="assets/img/demo/port4.jpg" alt="..." class="img-fluid">
-                </a>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card">
-                <a href="javascript:void(0)">
-                  <img src="assets/img/demo/port7.jpg" alt="..." class="img-fluid">
-                </a>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card">
-                <a href="javascript:void(0)">
-                  <img src="assets/img/demo/port9.jpg" alt="..." class="img-fluid">
-                </a>
-              </div>
-            </div>
-          </div>
         </div> <!-- container -->
 
-        <div class="btn-back-top">
-          <a href="#" data-scroll id="back-top" class="btn-circle btn-circle-primary btn-circle-sm btn-circle-raised "><i class="zmdi zmdi-long-arrow-up"></i></a>
-        </div>
+        
       </div> <!-- ms-site-container -->
 
 
@@ -160,6 +134,14 @@
   </div>
 </template>
 
+<style>
+  .ms-hero-bg-primary{
+    min-height: 200px;
+  }
+  .card-footer{
+    min-height: 30px;
+  }
+</style>
 
 <script>
 import axios from "axios";

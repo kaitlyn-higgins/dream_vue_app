@@ -29,9 +29,9 @@
     
 
 
-      <div class="ms-site-container">
+      <div class="ms-site-containerbg-full-page bg-primary-dark">
         
-        <div class="material-background"></div>
+        <div class="bg-full-page bg-primary-dark"></div>
         <div class="container text-center mb-6">
           <h1 class="no-m ms-site-title color-white center-block ms-site-title-lg mt-2 animated zoomInDown animation-delay-5">Dreams with {{ tag.name }} tags</h1>
           <!-- <p class="lead lead-lg color-white text-center center-block mt-2 mw-800 fw-300 animated fadeInUp animation-delay-7">Follow our blog and discover the latest content and trends in the market. In addition you will discover the best <span class="colorStar">tricks</span> and <span class="colorStar">discounts</span>.</p> -->
@@ -55,19 +55,19 @@
 
                       <p class="mb-4 theme-name">
                         <span v-for="theme in dream.themes">
-                          <a v-if="theme.name === 'Lucid'" class="ms-tag ms-tag-success">{{ theme.name }}</a>
+                          <a v-if="theme.name === 'Lucid'" class="btn btn-raised btn-success">{{ theme.name }}</a>
 
-                          <a v-if="theme.name === 'Nightmare'" class="ms-tag ms-tag-dark">{{ theme.name }}</a>
+                          <a v-if="theme.name === 'Nightmare'" class="btn btn-raised btn-dark">{{ theme.name }}</a>
 
-                          <a v-if="theme.name === 'Memory'" cclass="ms-tag ms-tag-primary">{{ theme.name }}</a>
+                          <a v-if="theme.name === 'Memory'" cclass="btn btn-raised btn-primary">{{ theme.name }}</a>
 
-                          <a v-if="theme.name === 'Adventure'" class="ms-tag ms-tag-danger">{{ theme.name }}</a>
+                          <a v-if="theme.name === 'Adventure'" class="btn btn-raised btn-danger">{{ theme.name }}</a>
 
-                          <a v-if="theme.name === 'Recurring'" class="ms-tag ms-tag-info">{{ theme.name }}</a>
+                          <a v-if="theme.name === 'Recurring'" class="btn btn-raised btn-info">{{ theme.name }}</a>
 
-                          <a v-if="theme.name === 'Healing'" class="ms-tag ms-tag-light">{{ theme.name }}</a>
+                          <a v-if="theme.name === 'Healing'" class="btn btn-raised btn-white">{{ theme.name }}</a>
 
-                          <a v-if="theme.name === 'inspiration'" class="ms-tag ms-tag-warning">{{ theme.name }}</a>
+                          <a v-if="theme.name === 'inspiration'" class="btn btn-raised btn-warning">{{ theme.name }}</a>
 
                         </span>
                       </p>
@@ -79,7 +79,7 @@
                   </div>
                   <div class="row">
                     <div class="col-lg-8">
-                       By <router-link v-bind:to="'/users/' + dream.user.id">{{ dream.user.username }}</router-link> in <a href="javascript:void(0)" class="ms-tag ms-tag-info">Design</a>
+                       By <router-link v-bind:to="'/users/' + dream.user.id">{{ dream.user.username }}</router-link>
                       <span class="ml-1 d-none d-sm-inline"><i class="zmdi zmdi-time mr-05 color-info"></i> <span class="color-medium-dark">Posted / updated: {{ formattedDate(dream.updated_at) }}</span></span>
                     </div>
 

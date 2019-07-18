@@ -2,11 +2,11 @@
   <div class="signup">
 
 
-      <div class="bg-full-page ms-hero-bg-dark ms-hero-img-airplane back-fixed">
+      <div class="bg-full-page ms-hero-bg ms-hero-img-airplane back-fixed">
         <div class="mw-500 absolute-center">
           <div class="card color-dark shadow-6dp animated zoomInDown animation-delay-7">
             <div class="ms-hero-bg-primary ms-hero-img-mountain">
-              <h2 class="text-center no-m pt-4 pb-4 color-white index-1">Login Form</h2>
+              <h2 class="text-center no-m pt-4 pb-4 color-white index-1">Welcome</h2>
             </div>
             <ul class="nav nav-tabs nav-tabs-full nav-tabs-2 nav-tabs-transparent indicator-primary" role="tablist">
               <li class="nav-item" role="presentation"><a href="#ms-register-tab" aria-controls="ms-register-tab" role="tab" data-toggle="tab" class="nav-link withoutripple active"><i class="zmdi zmdi-account-add"></i> Register</a></li>
@@ -71,6 +71,8 @@
                           <input type="radio" id="ms-form-user-r" name="gender" class="form-control" value="non_specified" v-model="gender"> prefer not to specify
                           <input type="radio">Other <input type="text" name="gender" value="" v-model="gender"/>
 
+
+          
 
                           <!-- <input type="text" id="ms-form-user-r" class="form-control" v-model="username"> -->
                         </div>
