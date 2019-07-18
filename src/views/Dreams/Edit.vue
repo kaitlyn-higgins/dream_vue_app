@@ -68,7 +68,7 @@
 
 
 
-          <div class="ms-site-container">
+          <div class="ms-site-containerbg-full-page bg-primary-dark">
      
             <div class="ms-hero-page mb-6 ms-hero-bg-primary ms-hero-img-coffee">
               <h2 class="text-center no-m pt-4 pb-4 color-white index-1">{{ dream.title }}</h2>
@@ -77,7 +77,7 @@
               <span v-for="tag in dream.tags">
                 <router-link v-bind:to="'/tags/' + tag.id" class=" btn btn-warning btn-xlg btn-raised animated flipInX animation-delay-16"> {{ tag.name }}</router-link>
               </span>
-              <button type="button" data-toggle="modal" data-target="#tagsModal" class="btn btn-raised btn-success btn-block">Edit Tags</button>
+              <button type="button" data-toggle="modal" data-target="#tagsModal" class="btn btn-raised btn-warning btn-block">Edit Tags</button>
             </div>
 
 
@@ -210,7 +210,7 @@
               <div class="modal-dialog animated zoomIn animated-3x" role="document">
                   <div class="modal-content">
                       <div class="modal-header">
-                          <h3 class="modal-title color-primary" id="myModalLabel">Modify Dream Description</h3>
+                          <h3 class="modal-title color-white" id="myModalLabel">Modify Dream Description</h3>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="zmdi zmdi-close"></i></span></button>
                       </div>
                       <div class="modal-body">
@@ -232,7 +232,7 @@
 
                       </div>
                       <div class="modal-footer">
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Return to Edit Page</button>
+                          <button type="button" class="btn btn-success" data-dismiss="modal">Return to Edit Page</button>
                           <!-- <button type="button" class="btn  btn-primary">Save changes</button> -->
                       </div>
                   </div>
@@ -260,9 +260,7 @@
                               </div>
                              
                             </div>
-                                {{dream.tags}}
-                                {{dream.tags.length}}
-                            <button type="submit" class="btn  btn-primary" v-on:click="tagsChanged = true">Save Dream</button>
+                            <button type="submit" class="btn  btn-primary" v-on:click="tagsChanged = true">Save Tags</button>
                           </fieldset>
                         </form>
                         {{tagsChanged}}

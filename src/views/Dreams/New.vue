@@ -61,14 +61,12 @@
     </ul> -->
 
 
+    ms-site-containerbg-full-page bg-primary-dark
 
-
-
-
-    <div class="ms-hero wrap bg-info">
+    <div class="ms-hero-page-override ms-hero-img-road ms-hero-bg-primary-light">
       <div class="container">
         <div class="text-center color-white mw-800 center-block mb-4">
-          <h2 class=" mb-2 wow fadeInDown animation-delay-4">Enter your dream</h2>
+          <h1 class=" mb-2 wow fadeInDown animation-delay-4">Enter your dream</h1>
           <!-- <p class="lead wow fadeInDown animation-delay-5"> Lorem ipsum dolor sit amet, <span class="">consectetur adipisicing</span> elit. Dolor alias provident excepturi eligendi, nam numquam iusto eum illum, ea quisquam.</p> -->
         </div>
         <div class="row color-dark">
@@ -134,7 +132,7 @@
           </div>
         </div>
         <div class="text-center wow fadeInUp animation-delay-7 mt-2">
-          <p class="lead lead-lg color-white text-center center-block mt-6 mw-800 text-uppercase fw-300 mb-2">Do tell.</p><br>
+          <h2 class="color-white text-center center-block mt-6 mw-800 text-uppercase fw-500 mb-2">Do tell.</h2><br>
           <!-- <a href="javascript:void(0)" class="btn btn-white btn-xlg btn-raised color-info"><i class="zmdi zmdi-email"></i> Contact Us</a> -->
         </div>
       </div> <!-- container -->
@@ -190,6 +188,12 @@
 
   </div>
 </template>
+
+<style>
+
+
+</style>
+
 
 <script>
 import axios from "axios";
