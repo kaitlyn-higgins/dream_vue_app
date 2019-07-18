@@ -176,40 +176,40 @@
   <!--Numerical Data Boxes  -->
         <div class="wrap ms-hero-bg-info ms-hero-img-keyboard ms-bg-fixed">
           <div class="container">
-            <h1 class="color-white text-center mb-4">Some numerical data</h1>
+            <h1 class="color-white text-center mb-4">Our Mission</h1>
             <div class="row">
               <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-royal card-body overflow-hidden text-center wow zoomInUp animation-delay-2">
-                  <h2 class="counter">450</h2>
-                  <i class="fa fa-4x fa-coffee color-royal"></i>
-                  <p class="mt-2 no-mb lead small-caps">cups of coffee</p>
+                  <h2>Build a platform</h2>
+                  <i class="fa fa-4x fa-gears color-royal"></i>
+                  <p class="mt-2 no-mb lead small-caps">for users to share their non-waking experiences with the world.</p>
                 </div>
               </div>
               <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-success card-body overflow-hidden text-center wow zoomInUp animation-delay-5">
-                  <h2 class="counter">64</h2>
-                  <i class="fa fa-4x fa-briefcase color-success"></i>
-                  <p class="mt-2 no-mb lead small-caps">projects done</p>
+                  <p class="mt-2 no-mb lead small-caps">Be a source</p><br>
+                  <i class="fa fa-4x fa-rocket color-success"></i>
+                  <h2>of inspiration</h2>
                 </div>
               </div>
               <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-danger card-body overflow-hidden text-center wow zoomInUp animation-delay-4">
-                  <h2 class="counter">600</h2>
-                  <i class="fa fa-4x fa-comments-o color-danger"></i>
-                  <p class="mt-2 no-mb lead small-caps">comments</p>
+                  <h2>Find and map</h2>
+                  <i class="fa fa-4x fa-globe color-danger"></i>
+                  <p class="mt-2 no-mb lead small-caps">patterns and connections in users' dreams</p>
                 </div>
               </div>
               <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-warning card-body overflow-hidden text-center wow zoomInUp animation-delay-3">
-                  <h2 class="counter">3500</h2>
+                  <p class="mt-2 no-mb lead small-caps">Give back to the scientific community studying<p><br>
                   <i class="fa fa-4x fa-group color-warning"></i>
-                  <p class="mt-2 no-mb lead small-caps">happy clients</p>
+                  <h2>sleep & dreams</h2>
                 </div>
               </div>
             </div>
             <div class="text-center color-white mw-800 center-block mt-4">
-              <p class="lead lead-lg">Discover our projects and the rigorous process of creation. Our principles are creativity, design, experience and knowledge. We are backed by 20 years of research.</p>
-              <a href="javascript:void(0)" class="btn btn-raised btn-white color-primary wow flipInX animation-delay-8"><i class="fa fa-space-shuttle"></i> I have a project</a>
+              <p class="lead lead-lg">Express yourself. Expand your mind. Browse dreams for inspiration on your next big project. Document your adventures before they drift away.</p>
+              <router-link to="/signup" class="btn btn-raised btn-white color-primary wow flipInX animation-delay-8"><i class="fa fa-space-shuttle"></i> I have a dream</router-link>
             </div>
           </div>
         </div>
