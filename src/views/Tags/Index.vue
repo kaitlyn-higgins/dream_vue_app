@@ -27,7 +27,8 @@
     </div> -->
 
 
-     <!--  <div class="ms-site-container"> -->
+      <div class="ms-site-container">
+<!-- bubble chart -->
         <div class="intro-full ms-hero-img-keyboard ms-hero-bg-primary color-white" id="home">
           <div class="intro-full-content index-1">
             <div class="container">
@@ -46,24 +47,30 @@
         <div class="container container-full pt-6">
 
 
-          <div class="card card-primary-inverse mt-4 wow fadeInUp" id="skills">
-            <div class="card-body card-body-big">
- 
+<!-- mapbox map -->
+        <div id='map'></div>
 
-              <h3 class="text-center fw-500 mb-4">All Strands</h3>
 
-              <form class="mw-500 center-block animated fadeInUp">
-                <input type="text" placeholder="Search for strands" v-model="tagFilter" class="form-control color-white">
-                <button type="button" class="btn btn-raised btn-royal btn-block"><i class="zmdi zmdi-search"></i> Search</button>
-              </form>
 
-              <div class="text-center center-block mw-200">
-                <span v-for="tag in filterBy(tags, tagFilter, 'name')" class="ms-tag ms-tag-light color-primary"><router-link v-bind:to="'/tags/' + tag.id">{{ tag.name }}</router-link></span>
-              </div>
+<!-- all strands -->
+        <div class="card card-primary-inverse mt-4 wow fadeInUp" id="skills">
+          <div class="card-body card-body-big">
 
-              <h4 class="text-center mt-10 mb-2">Click to see corresponding dreams</h4>
+
+            <h3 class="text-center fw-500 mb-4">All Strands</h3>
+
+            <form class="mw-500 center-block animated fadeInUp">
+              <input type="text" placeholder="Search for strands" v-model="tagFilter" class="form-control color-white">
+              <button type="button" class="btn btn-raised btn-royal btn-block"><i class="zmdi zmdi-search"></i> Search</button>
+            </form>
+
+            <div class="text-center center-block mw-200">
+              <span v-for="tag in filterBy(tags, tagFilter, 'name')" class="ms-tag ms-tag-light color-primary"><router-link v-bind:to="'/tags/' + tag.id">{{ tag.name }}</router-link></span>
             </div>
+
+            <h4 class="text-center mt-10 mb-2">Click to see corresponding dreams</h4>
           </div>
+        </div>
 
 
         </div> <!-- container -->
@@ -76,7 +83,7 @@
             <a href="#" data-scroll id="back-top" class="btn-circle btn-circle-primary btn-circle-sm btn-circle-raised "><i class="zmdi zmdi-long-arrow-up"></i></a>
           </div>
         </div>
-      <!-- </div>  --><!-- ms-site-container -->
+      </div>  <!-- ms-site-container -->
       
 
 
@@ -92,6 +99,14 @@
 
   #home {
     height: 1100px;
+  }
+
+  #map {top:0; bottom:0; width:100%; height:700px; }
+
+   
+  .mapboxgl-popup {
+  max-width: 400px;
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
   }
 
 </style>
@@ -114,10 +129,10 @@ export default {
     axios.get("/api/tags").then(response => {
       this.formatted_tag_series = response.data.formatted_tag_series;
       this.formatted_theme_series = response.data.formatted_theme_series;
-      this.map_tags = response.data.map_tags;
+      this.map_tags_list = response.data.map_tags_list;
       this.tags = response.data.tags;
       // console.log(this.tags);
-      console.log(this.map_tags);
+      console.log(this.map_tags_list);
       // console.log(this.tags);
       Highcharts.chart('highchart', {
         chart: {
@@ -181,6 +196,65 @@ export default {
         }]
       });
      
+      mapboxgl.accessToken = 'pk.eyJ1Ijoia2FpdGx5bi1oaWdnaW5zIiwiYSI6ImNqdzhnenY3ZTA0bG40OXFtYXU5Y3o3OW0ifQ.ui0g5SMebq8LOjzECdtxMA';
+      var map = new mapboxgl.Map({
+        container: 'map', // container id
+        style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+        center: [-88.72205, 41.95361], // starting position [lng, lat]
+        zoom: 3.5 // starting zoom
+      });
+      
+      map.on('load', function() {
+         
+        // Add a layer showing the places.
+        map.addLayer({
+          "id": "places",
+          "type": "symbol",
+          "source": {
+            "type": "geojson",
+            "data": {
+              "type": "FeatureCollection",
+              "features": this.map_tags_list
+            }
+          },
+          "layout": {
+            "icon-image": "{icon}-15",
+            "icon-allow-overlap": true
+          }
+        });
+                 
+        // Create a popup, but don't add it to the map yet.
+        var popup = new mapboxgl.Popup({
+          closeButton: false,
+          closeOnClick: false
+        });
+                 
+        map.on('mouseenter', 'places', function(e) {
+          // Change the cursor style as a UI indicator.
+          map.getCanvas().style.cursor = 'pointer';
+           
+          var coordinates = e.features[0].geometry.coordinates.slice();
+          var description = e.features[0].properties.description;
+           
+          // Ensure that if the map is zoomed out such that multiple
+          // copies of the feature are visible, the popup appears
+          // over the copy being pointed to.
+          while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+          }
+           
+          // Populate the popup and set its coordinates
+          // based on the feature found.
+          popup.setLngLat(coordinates)
+            .setHTML(description)
+            .addTo(map);
+        });
+           
+        map.on('mouseleave', 'places', function() {
+          map.getCanvas().style.cursor = '';
+          popup.remove();
+        });
+      }.bind(this));
       
     });
   },
