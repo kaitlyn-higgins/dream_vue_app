@@ -9,46 +9,14 @@
               <h2 class="text-center no-m pt-4 pb-4 color-white index-1">Login Form</h2>
             </div>
             <ul class="nav nav-tabs nav-tabs-full nav-tabs-2 nav-tabs-transparent indicator-primary" role="tablist">
-              <li class="nav-item" role="presentation"><a href="#ms-login-tab" aria-controls="ms-login-tab" role="tab" data-toggle="tab" class="nav-link withoutripple active"><i class="zmdi zmdi-account"></i> Login</a></li>
-              <li class="nav-item" role="presentation"><a href="#ms-register-tab" aria-controls="ms-register-tab" role="tab" data-toggle="tab" class="nav-link withoutripple"><i class="zmdi zmdi-account-add"></i> Register</a></li>
+              <li class="nav-item" role="presentation"><a href="#ms-register-tab" aria-controls="ms-register-tab" role="tab" data-toggle="tab" class="nav-link withoutripple active"><i class="zmdi zmdi-account-add"></i> Register</a></li>
+              <li class="nav-item" role="presentation"><a href="#ms-login-tab" aria-controls="ms-login-tab" role="tab" data-toggle="tab" class="nav-link withoutripple"><i class="zmdi zmdi-account"></i> Login</a></li>
             </ul>
             <div class="card-body">
               <div class="tab-content">
 
 
-                <div role="tabpanel" class="tab-pane fade active show" id="ms-login-tab">
-                  <form v-on:submit.prevent="loginSubmit()">
-                    <fieldset>
-                      <div class="form-group label-floating">
-                        <div class="input-group">
-                          <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
-                          <label class="control-label" for="ms-form-user">Email</label>
-                          <input type="email" id="ms-form-user" class="form-control" v-model="email">
-                        </div>
-                      </div>
-                      <div class="form-group label-floating">
-                        <div class="input-group">
-                          <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
-                          <label class="control-label" for="ms-form-pass">Password</label>
-                          <input type="password" id="ms-form-pass" class="form-control" v-model="password">
-                        </div>
-                      </div>
-                      <div class="row mt-2">
-                        <div class="col-5">
-                          <div class="form-group mt-1">
-                          </div>
-                        </div>
-                        <div class="col-7">
-                          <button type="submit" value="Submit" class="btn btn-raised btn-primary pull-right">Login</button>
-                        </div>
-                      </div>
-                    </fieldset>
-                  </form>
-                </div>
-
-
-
-                <div role="tabpanel" class="tab-pane fade" id="ms-register-tab">
+                <div role="tabpanel" class="tab-pane fade active show" id="ms-register-tab">
                   <form v-on:submit.prevent="registerSubmit()">
                     <fieldset>
                       <div class="form-group label-floating">
@@ -96,7 +64,7 @@
                         <div class="input-group">
                           <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
                           <label>Gender <small>optional</small></label><br>
-          
+                
                     
                           <input type="radio" id="ms-form-user-r" name="gender" class="form-control" value="male" v-model="gender">  male
                           <input type="radio" id="ms-form-user-r" name="gender" class="form-control" value="female" v-model="gender">  female  
@@ -130,6 +98,40 @@
                     <li v-for="error in errors">{{ error }}</li>
                   </ul>
                 </div>
+
+
+
+
+                <div role="tabpanel" class="tab-pane fade" id="ms-login-tab">
+                  <form v-on:submit.prevent="loginSubmit()">
+                    <fieldset>
+                      <div class="form-group label-floating">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                          <label class="control-label" for="ms-form-user">Email</label>
+                          <input type="email" id="ms-form-user" class="form-control" v-model="email">
+                        </div>
+                      </div>
+                      <div class="form-group label-floating">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
+                          <label class="control-label" for="ms-form-pass">Password</label>
+                          <input type="password" id="ms-form-pass" class="form-control" v-model="password">
+                        </div>
+                      </div>
+                      <div class="row mt-2">
+                        <div class="col-5">
+                          <div class="form-group mt-1">
+                          </div>
+                        </div>
+                        <div class="col-7">
+                          <button type="submit" value="Submit" class="btn btn-raised btn-primary pull-right">Login</button>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </form>
+                </div>
+
               </div>
             </div>
           </div>
