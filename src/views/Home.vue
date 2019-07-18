@@ -1,20 +1,63 @@
 <template>
   <div class="home">
     <h1>{{ message }}</h1>
+  
+    <div id="app">
+      <vue-particles class="js-count-particles" color="#dedede"
+          :particleOpacity="0.9"
+          :particlesNumber="150"
+          shapeType="circle"
+          :particleSize="3"
+          linesColor="#dedede"
+          :linesWidth="1"
+          :lineLinked="true"
+          :lineOpacity="0.6"
+          :linesDistance="150"
+          :moveSpeed="5"
+          :hoverEffect="true"
+          hoverMode="grab"
+          :clickEffect="true"
+          clickMode="repulse"></vue-particles>
+    </div>
+
+
+
+    <!-- particles.js container --> 
+    <!-- <div id="particles-js"></div> -->
+     <!-- stats - count particles --> 
+     <!-- <div class="count-particles"> 
+      <span class="js-count-particles">--</span> particles 
+    </div>  -->
+
+
+
+
+
   </div>
 </template>
 
 <style>
+/* ---- reset ---- */ /*body{ margin:0; font:normal 75% Arial, Helvetica, sans-serif; } canvas{ display: block; vertical-align: bottom; }*/ /* ---- particles.js container ---- */ #particles-js{ position:absolute; width: 100%; height: 100%; background-color: #b61924; background-image: url("https://images.unsplash.com/photo-1499343162160-cd1441923dd3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80"); background-repeat: no-repeat; background-size: cover; background-position: 50% 50%; } /* ---- stats.js ---- */ .count-particles{ background: #000022; position: absolute; top: 48px; left: 0; width: 80px; color: #13E8E9; font-size: .8em; text-align: left; text-indent: 4px; line-height: 14px; padding-bottom: 2px; font-family: Helvetica, Arial, sans-serif; font-weight: bold; } .js-count-particles{ font-size: 1.1em; } #stats, .count-particles{ -webkit-user-select: none; margin-top: 5px; margin-left: 5px; } #stats{ border-radius: 3px 3px 0 0; overflow: hidden; } .count-particles{ border-radius: 0 0 3px 3px; }
 </style>
 
 <script>
+// import VueParticles from 'vue-particles';
+// import particleJS from 'particles.js';
 export default {
   data: function() {
     return {
       message: "Welcome to Vue.js!"
     };
   },
-  created: function() {},
-  methods: {}
+  created: function() {
+    // particlesJS.load('particles-js', 'assets/particles.json', function() {
+    //   console.log('callback - particles.js config loaded');
+    // });
+  },
+  methods: {
+    initParticles() {
+      window.particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":205.17838682439088,"color":"#ffffff","opacity":0.37089939156716817,"width":1.2626362266116362},"move":{"enable":true,"speed":6,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":1183.721462448409,"rotateY":1262.6362266116362}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});var count_particles, stats, update; stats = new Stats; stats.setMode(0); stats.domElement.style.position = 'absolute'; stats.domElement.style.left = '0px'; stats.domElement.style.top = '0px'; document.body.appendChild(stats.domElement); count_particles = document.querySelector('.js-count-particles'); update = function() { stats.begin(); stats.end(); if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) { count_particles.innerText = window.pJSDom[0].pJS.particles.array.length; } requestAnimationFrame(update); }; requestAnimationFrame(update);
+    }
+  }
 };
 </script>

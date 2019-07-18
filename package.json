@@ -16,6 +16,7 @@
     "moment": "^2.24.0",
     "particles.js": "^2.0.0",
     "vue": "^2.6.10",
+    "vue-particles": "^1.0.9",
     "vue-router": "^3.0.3",
     "vue2-filters": "^0.6.0"
   },

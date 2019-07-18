@@ -133,7 +133,7 @@
                   <div class="card-footer">
                     <h3 v-for="theme in dream.themes" href="#" class="btn btn-royal">{{theme.name}}</h3>
                   </div>
-                  <button type="button" data-toggle="modal" data-target="#themePhotoModal" class="btn btn-raised btn-primary btn-block">Edit Themes & Photo</button>
+                  <!-- <button type="button" data-toggle="modal" data-target="#themePhotoModal" class="btn btn-raised btn-primary btn-block">Edit Themes & Photo</button> -->
                 </div>
       
                
@@ -167,7 +167,7 @@
                   </div>
                 </div>
               </div>
-              <h2 class="right-line mt-6">Related Works</h2>
+            <!--   <h2 class="right-line mt-6">Related Works</h2>
               <div class="row">
                 <div class="col-md-4">
                   <div class="card">
@@ -190,7 +190,7 @@
                     </a>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div> <!-- container -->
 
             <div class="btn-back-top">

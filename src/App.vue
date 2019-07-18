@@ -70,6 +70,7 @@
 
 
     <router-view :key="$route.path"/>
+
     
     <!-- <footer class="ms-footer ms-footer-dark">
       <div class="container">
@@ -77,8 +78,8 @@
       </div>
     </footer> -->
 
-
-  </div>
+<!--     <vue-particles color="#dedede"></vue-particles>
+ -->  </div>
 <!--     <UsersShow :key="UsersShow.user"/>
  -->
 
@@ -92,8 +93,10 @@
 
 <script>
 import axios from "axios";
+
   
 export default {
+
   data: function() {
     return {
       // userid: localStorage.getItem('user_id'),
