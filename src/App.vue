@@ -124,11 +124,11 @@
       <!--ms-header-primary-->
       <div class="container container-full">
         <div class="ms-title">
-          <a href="index.html">
-            <!-- <img src="assets/img/demo/logo-header.png" alt=""> -->
+          <router-link to="/">
+            <img src="assets/img/demo/logo-header.png" alt="">
             <span class="ms-logo animated zoomInDown animation-delay-5">I</span>
             <h1 class="animated fadeInRight animation-delay-6">Indra's <span>Web</span></h1>
-          </a>
+          </router-link>
         </div>
         <div class="header-right">
           <div v-if="!isLoggedIn()" class="share-menu">
