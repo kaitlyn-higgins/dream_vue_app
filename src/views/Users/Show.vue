@@ -164,7 +164,7 @@
                         <span v-for="theme in filterBy(dream.themes, themeFilter, 'name')">
                           <a v-if="theme.name === 'Lucid'" class="btn btn-raised btn-success">{{ theme.name }}</a>
 
-                          <a v-if="theme.name === 'Nightmare'" class="btn btn-raised btn-dark">{{ theme.name }}</a>
+                          <a v-if="theme.name === 'Nightmare'" class="btn btn-raised btn-default">{{ theme.name }}</a>
 
                           <a v-if="theme.name === 'Memory'" class="btn btn-raised btn-primary">{{ theme.name }}</a>
 
