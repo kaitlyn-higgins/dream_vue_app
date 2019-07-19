@@ -41,7 +41,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group label-floating">
+                      <!-- <div class="form-group label-floating">
                         <label for="ms-form-photo-r">Photo / Avatar</label>
                         <input type="file" id="ms-form-user-r" class="form-control" v-on:change="setFile($event)" ref="fileInput">
                         <div class="input-group">
@@ -55,6 +55,13 @@
                           </span>
                           
                           
+                        </div>
+                      </div> -->
+                      <div class="form-group label-floating">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
+                          <label class="control-label" for="ms-form-email-r">Email</label>
+                          <input type="email" id="ms-form-email-r" class="form-control" v-model="email">
                         </div>
                       </div>
                       {{photo}}
@@ -433,11 +440,11 @@ export default {
     };
   },
   methods: {
-    setFile: function(event) {
-      if (event.target.files.length > 0) {
-        this.photo = event.target.files[0];
-      }
-    },
+    // setFile: function(event) {
+    //   if (event.target.files.length > 0) {
+    //     this.photo = event.target.files[0];
+    //   }
+    // },
     registerSubmit: function() {
       var formData = new FormData();
       formData.append("username", this.username);

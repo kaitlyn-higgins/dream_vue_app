@@ -66,7 +66,7 @@
 
 
 
-
+<!-- header with title and tags -->
 
           <div class="ms-site-containerbg-full-page bg-primary-dark">
      
@@ -75,7 +75,7 @@
 
               <div class="lead color-white index-1 text-center">
               <span v-for="tag in dream.tags">
-                <router-link v-bind:to="'/tags/' + tag.id" class=" btn btn-warning btn-xlg btn-raised animated flipInX animation-delay-16"> {{ tag.name }}</router-link>
+                <router-link v-bind:to="'/tags/' + tag.id" class=" btn btn-white btn-xlg btn-raised animated flipInX animation-delay-16"> {{ tag.name }}</router-link>
               </span>
               <button type="button" data-toggle="modal" data-target="#tagsModal" class="btn btn-raised btn-warning btn-block">Edit Tags</button>
             </div>
@@ -133,7 +133,7 @@
                   <div class="card-footer">
                     <h3 v-for="theme in dream.themes" href="#" class="btn btn-royal">{{theme.name}}</h3>
                   </div>
-                  <!-- <button type="button" data-toggle="modal" data-target="#themePhotoModal" class="btn btn-raised btn-primary btn-block">Edit Themes & Photo</button> -->
+                  <button type="button" data-toggle="modal" data-target="#themePhotoModal" class="btn btn-raised btn-primary btn-block">Edit Themes & Photo</button>
                 </div>
       
                
@@ -152,13 +152,13 @@
                     <div class="card-body">
                       <h3 class="color-primary no-mt">Dream Details</h3>
                       <ul class="list-unstyled">
-                        <li><strong>Dreamer: </strong>  <router-link v-bind:to="'/users/' + dream.user.id">{{ dream.user.username }}</router-link></li>
-                        <li><strong>Posted / Updated: </strong> {{ formattedDate(dream.updated_at) }}</li>
+                        <li class="color-dark no-mt"><strong>Dreamer: </strong>  <router-link v-bind:to="'/users/' + dream.user.id"> {{ dream.user.username }}</router-link></li>
+                        <li class="color-dark no-mt"><strong>Posted / Updated: </strong> {{ formattedDate(dream.updated_at) }}</li>
     <!--                     <li><strong>Author:</strong> Andrew Ryan</li>
                         <li><strong>Year:</strong> 2014</li> -->
                       </ul>
                       <h3 class="color-primary">Description</h3>
-                      <p>{{ dream.content }}</p>
+                      <p class="color-dark no-mt">{{ dream.content }}</p>
                       
                         <!-- <p class="text-center"><router-link v-bind:to="'/dreams/' + dream.id + '/edit'" class="btn btn-raised btn-primary">Edit Description</router-link></p> -->
                         <button type="button" data-toggle="modal" data-target="#descriptionModal" class="btn btn-raised btn-primary btn-block">Edit Description</button>
@@ -215,7 +215,7 @@
                       </div>
                       <div class="modal-body">
                           
-                        <form v-on:submit.prevent="submit()">
+                        <form v-on:submit="submit()">
                           <fieldset>
                             <div class="form-group has-success">
                               <label for="dreamTitle">Title</label>
@@ -255,10 +255,18 @@
                           <fieldset>
                             <div class="form-group has-success">
                               <label for="dreamTags">Strands</label>
-                              <div v-for="tag in dream.tags">
-                                <input type="text" class="form-control" v-model="tag.name">
+                              <div v-for="(tag, index) in dream.tags">
+                                <input v-model="tag.name">
+                                  <button @click="deleteTag(index)">delete</button>
+                                <!-- <li>{{tag.name}}</li>
+                                <span v-on:click="removeTag(tag)">x</span> -->
                               </div>
-                             
+                              {{dream.tags}}
+                                <button @click="addTag()">
+                                  New Tag
+                                </button>
+                                {{tags}}
+
                             </div>
                             <button type="submit" class="btn  btn-primary" v-on:click="tagsChanged = true">Save Tags</button>
                           </fieldset>
@@ -272,6 +280,18 @@
                   </div>
               </div>
           </div>
+
+
+
+                <!-- <input type="text" class="form-control" v-model="newTag"> -->
+<!--                               <input type="text" class="form-control" v-model="tag.name">
+-->
+
+              <!--   <input v-if="shownInputs > 9" type="text" id="tag10" v-model="tag_names[10]">
+                <a v-on:click="shownInputs++">+</a> -->
+
+                  <!-- <button v-on:click="addTag(newTag)">+</button> -->
+                  <!-- <input type="text" class="form-control" v-model="newTag"> -->
 
 
 <!-- photo & themes modal -->
@@ -290,20 +310,24 @@
                               <label for="themes">Dream Themes</label>
                               <div v-for="theme in themes">
                                 
-                                <input type="checkbox" class="form-control" v-model="theme.id"> {{theme.name}}
-                              
-                                
+                                <input type="checkbox" class="form-control" :value="theme.id" v-model="checkedThemes"> {{theme.name}}
                               </div>
                              
+
+                              <div>
+                                {{checkedThemes.name}}
+                                <label for="dreamImageUrl">Image Url</label>
+                                <input type="text" id="dreamImageUrl" placeholder="https://i.ytimg.com/vi/1vMBqDt0s0I/hqdefault.jpg" v-model="dream.image_url">
+                              </div>
                             </div>
-                                {{dream.themes}}
-                                {{dream.theme}}
-                               <!--  {{theme.name}}
-                                {{theme.id}} -->
+                                <!-- {{dream.themes}} -->
+                                <!-- {{dream.theme}} -->
+                                <!-- {{theme.name}} -->
+                                <!-- {{theme.id}} -->
                             <button type="submit" class="btn  btn-primary" v-on:click="themesChanged = true">Save Dream</button>
                           </fieldset>
                         </form>
-                        {{tagsChanged}}
+                       <!--  {{tagsChanged}} -->
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-danger" data-dismiss="modal">Return to Edit Page</button>
@@ -312,6 +336,11 @@
                   </div>
               </div>
           </div>
+
+
+
+
+
 
 
 <!--           <div class="form-group col-md-12">
@@ -352,7 +381,12 @@ export default {
       themeIds: [],
       tagsChanged: false,
       themesChanged: false,
-      theme: {}
+      theme: {},
+      checkedThemes: [],
+      newTags: [{
+        name: "strand"
+      }],
+      tags: []
       // dreamThemeIds: [this.themes]
     };
   },
@@ -383,6 +417,7 @@ export default {
         // theme_ids: this.themeIds
       };
 
+
       console.log(this.tagsChanged);
       if (this.tagsChanged) {
         var tagNames = this.dream.tags.map(tag => tag.name);
@@ -390,8 +425,8 @@ export default {
       }
 
       if (this.themesChanged) {
-        var dreamThemeIds = this.dream.themes.map(theme => theme.id);
-        console.log(this.dream.themes);
+        var dreamThemeIds = this.checkedThemes;
+        console.log(this.checkedThemes);
         params.theme_ids = dreamThemeIds;
       }
 
@@ -410,6 +445,25 @@ export default {
     formattedDate: function(date) {
       return moment(date).format('LLLL');
     },
+    addTag: function() {
+      this.newTags.push({ name: ''});
+    },
+    deleteTag: function(index) {
+      console.log(index);
+      console.log(this.finds);
+      this.newTags.splice(index, 1);
+      if (index === 0) {
+        this.addTag();
+
+      }
+    }
+
+    // removeTag: function(index) {
+    //   this.dream.tags.splice(index, 1);
+    // },
+    // addTag(newTag) {
+    //   this.dream.tags.push;
+    // }
   }
 };
 </script>

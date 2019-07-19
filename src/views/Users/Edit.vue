@@ -119,14 +119,19 @@
                     </div>
                     <div class="row form-group">
                       <label for="inputLast" class="col-md-2 control-label">Photo / Avatar</label>
-                      <div class="col-md-9">
+                     <!--  <div class="col-md-9">
                         <input type="file" class="form-control" id="photo" v-on:change="setFile($event)" ref="fileInput">
-                        <button type="button" class="btn btn-fab btn-fab-mini">
+                        <button type="button" class="btn btn-fab btn-fab-mini" v-on:click="photoChanged = true">
                           <i class="material-icons">attach_file</i>
                         </button>
+                      </div> -->
+                      <div>
+                        <label for="photo">Photo / Avatar</label>
+                        <input type="text" id="photo" class="form-control"  v-model="user.photo">
                       </div>
+                      {{photo}}
                     </div>
-            
+    
 
 
 
@@ -270,7 +275,8 @@ export default {
     return {
       user: {},
       errors: [],
-      photo: ""
+      photo: "",
+      photoChanged: false,
     };
   },
   created: function() {
@@ -280,17 +286,17 @@ export default {
     });
   },
   methods: {
-    setFile: function(event) {
-      if (event.target.files.length > 0) {
-        this.photo = event.target.files[0];
-      }
-    },
+    // setFile: function(event) {
+    //   if (event.target.files.length > 0) {
+    //     this.photo = event.target.files[0];
+    //   }
+    // },
     submit: function() {
       var formData = new FormData();
       formData.append("username", this.user.username);
       formData.append("email", this.user.email);
       formData.append("zip_code", this.user.zip_code);
-      formData.append("photo", this.photo);
+      formData.append("photo", this.user.photo);
       formData.append("gender", this.user.gender);
       formData.append("password", this.user.password);
       formData.append("password_confirmation", this.user.password_confirmation);
@@ -303,6 +309,9 @@ export default {
       //   password: this.user.password,
       //   password_confirmation: this.user.password_confirmation
       // };
+      // if (this.photoChanged) {
+      //   formData.append("photo", this.photo);
+      // }
       axios.patch("/api/users/" + this.user.id, formData).then(response => {
         console.log("success", response.data);
         console.log(response.data);
