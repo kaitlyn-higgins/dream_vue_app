@@ -82,7 +82,7 @@
 
 
 
-
+    <div class="ms-site-containerbg-full-page bg-primary-dark"> 
 <!-- top bar -->
 
       <div class="ms-hero-page ms-hero-img-keyboard ms-hero-bg-primary mb-6">
@@ -138,7 +138,7 @@
                   <span v-for="theme in filterBy(dream.themes, themeFilter, 'name')">
                     <a v-if="theme.name === 'Lucid'" class="btn btn-raised btn-success">{{ theme.name }}</a>
 
-                    <a v-if="theme.name === 'Nightmare'" class="btn btn-raised btn-dark">{{ theme.name }}</a>
+                    <a v-if="theme.name === 'Nightmare'" class="btn btn-raised btn-default">{{ theme.name }}</a>
 
                     <a v-if="theme.name === 'Memory'" class="btn btn-raised btn-primary">{{ theme.name }}</a>
 
@@ -152,26 +152,31 @@
 
                   </span>
                 </p>
-                <div v-for="tag in dream.tags">
+                <div  class="text-center center-block mw-200">
+                  <span v-for="tag in dream.tags" class="ms-tag ms-tag-light color-primary">
                   <router-link :to="'/tags/' + tag.id">{{ tag.name }}</router-link>
+                  </span>
                 </div>
 
       <!--           <p>Sed ut perspiciatis unde omnis iste natus error nesciunt voluptas sit voluptatem accusantium doloremque laudantium eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
                 <p>Sed ut perspiciatis unde omnis iste natus error nesciunt voluptas sit voluptatem accusantium doloremque laudantium eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p> -->
-                <div class="row">
-                  <div class="col-lg-6 col-md-4">
+                <div>
+                  <div class="card-body overflow-hidden text-center">
                     <div class="mt-05">
                       <router-link :to="'/users/' + dream.user.id" class="btn btn-royal"><i class="zmdi zmdi-star"></i>{{dream.user.username}}</router-link>
+                      <router-link :to="'/dreams/' + dream.id" class="btn btn-royal btn-raised"><i class="zmdi zmdi-globe"></i>See Dream Content</router-link>
                     </div>
                   </div>
-                  <div class="col-lg-6 col-md-8">
-                    <!-- <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-block animate-icon">Read more <i class="ml-1 no-mr zmdi zmdi-long-arrow-right"></i></a> -->
-                    <router-link :to="'/dreams/' + dream.id" class="btn btn-royal btn-raised"><i class="zmdi zmdi-globe"></i>See Dream Content</router-link>
-                  </div>
+                 
                 </div>
               </div>
             </article>
           </div>
+
+
+
+
+
 
 
 <!--           <div class="col-lg-4 col-md-6 masonry-item wow fadeInUp animation-delay-2">
@@ -505,7 +510,7 @@
           </div> -->
         </div>
       </div>
-
+    </div>
 
         
   </div>

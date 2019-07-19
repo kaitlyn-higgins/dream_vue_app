@@ -185,6 +185,11 @@
                     </div> -->
 
 
+
+  
+
+
+
                     <div class="row form-group">
                       <label for="inputPassword" class="col-md-2 control-label">New Password</label>
                       <div class="col-md-9">
@@ -218,6 +223,10 @@
                     </ul>
                   </fieldset>
                 </form>
+                <div>
+                  <h5>Password and confirmation are <strong>required.</strong></h5>
+                  <h6>You may change it at this time if you would like, but you may also continue to use your current password.</h6>
+                </div>
               </div>
             </div>
           </div> <!-- container -->

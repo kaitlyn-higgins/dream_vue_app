@@ -57,7 +57,7 @@
                         <span v-for="theme in dream.themes">
                           <a v-if="theme.name === 'Lucid'" class="btn btn-raised btn-success">{{ theme.name }}</a>
 
-                          <a v-if="theme.name === 'Nightmare'" class="btn btn-raised btn-dark">{{ theme.name }}</a>
+                          <a v-if="theme.name === 'Nightmare'" class="btn btn-raised btn-default">{{ theme.name }}</a>
 
                           <a v-if="theme.name === 'Memory'" cclass="btn btn-raised btn-primary">{{ theme.name }}</a>
 

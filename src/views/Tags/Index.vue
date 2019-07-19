@@ -110,6 +110,7 @@
   .mapboxgl-popup {
   max-width: 400px;
   font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  color: #245053;
   }
 
 </style>
